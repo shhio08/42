@@ -9,8 +9,8 @@ size_t ft_strlen(const char *str)
 	return (cnt);
 }
 
-#include <stdio.h>
-int main()
-{
-	printf("%zu", ft_strlen("asdfgh"));
-}
+// #include <stdio.h>
+// int main()
+// {
+// 	printf("%zu", ft_strlen("asdfgh"));
+// }

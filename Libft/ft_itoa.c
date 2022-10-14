@@ -1,38 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 15:34:37 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/14 12:50:54 by stakimot         ###   ########.fr       */
+/*   Created: 2022/10/13 15:46:46 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/14 13:17:11 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-char *ft_strjoin(char const *s1, char const *s2)
+char *ft_itoa(int n)
 {
-	char *dest;
+	char *str;
+	int num;
+	int digit;
 	int i;
 
+	num = n;
+	digit = 0;
 	i = 0;
-	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!dest)
+	while (num > 0)
+	{
+		num /= 10;
+		digit++;
+	}
+	num = n;
+	if (n < 0)
+	{
+		num *= -1;
+		digit++;
+	}
+	str = (char *)malloc(sizeof(char) * (digit + 1));
+	if (!str)
 		return (0);
-	while (*s1)
-		dest[i++] = *s1++;
-	while (*s2)
-		dest[i++] = *s2++;
-	dest[i] = '\0';
-	return (dest);
+	if (n < 0)
+		str[0] = '-';
+	str[digit--] = '\0';
+	while (digit >= 0)
+	{
+		// printf("%d %d\n", digit, num);
+		str[digit--] = num % 10 + '0';
+		num /= 10; 
+	}
+	return (str);
 }
 
 #include <stdio.h>
 int main()
 {
-	char s1[] = "ABC";
-	char s2[] = "DEF";
-	printf("%s", ft_strjoin(s1, s2));
+	printf("%s", ft_itoa(123));	
 }

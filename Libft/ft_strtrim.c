@@ -6,56 +6,42 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:03:57 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/13 14:24:40 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:43:03 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int check_set(char c, char const *set)
+{
+	while (*set)
+	{
+		if (*set++ == c)
+			return (0);
+	}
+	return (1);
+}
+
+
 char *ft_strtrim(char const *s1, char const *set)
 {
-	int i;
-	int j;
-	int k;
+	int start;
+	int end;
 	int count;
 	char *dest;
 
-	i = 0;
-	k = 0;
+	start = 0;
+	end = 0;
 	count = 0;
-	while (s1[i] != '\0')
-	{
-		while (set[j] != '\0')
-		{
-			if (s1[i] == set[j])
-			{
-				count++;
-				break;
-			}
-			j++;
-		}
-		i++;
-		j = 0;
-	}
-	dest = (char *)malloc(sizeof(char) * (count + 1));
+	while (!check_set(s1[start++], set));
+	end = ft_strlen(s1);
+	while (!check_set(s1[end--], set));
+	dest = (char *)malloc(sizeof(char) * (end - start + 2));
 	if (!dest)
 		return (0);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		while (set[j] != '\0')
-		{
-			if (s1[i] == set[j])
-			{
-				dest[k] = s1[i];
-				break;
-			}
-			j++;
-		}
-		i++;
-		j = 0;
-		k++;
-	}
-	dest[k] = '\0';
+	while (start < end + 1)
+		dest[count++] = s1[start++];
+	dest[count] = '\0';
 	return (dest);
 }
 

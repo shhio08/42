@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:46:46 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 13:49:45 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/23 15:20:31 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ char	*ft_itoa(int n)
 	char *str;
 	int num;
 	int digit;
-	int i;
 
 	num = n;
 	digit = 0;
-	i = 0;
 	while (num > 0)
 	{
 		num /= 10;

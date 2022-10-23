@@ -6,11 +6,13 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:41 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/10 15:13:36 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/23 14:31:30 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strrchr(const char *s, int c)
+#include "libft.h"
+
+char	*ft_strrchr(const char *s, int c)
 {
 	int i;
 
@@ -19,18 +21,11 @@ char *ft_strrchr(const char *s, int c)
 		i++;
 	if (c == '\0')
 		return ((char *)&s[i]);
-	while (i > 0)
+	while (i >= 0)
 	{
-		if (s[i] == c)
+		if (s[i] == (unsigned char)c)
 			return ((char *)&s[i]);
 		i--;
 	}
 	return (0);
-}
-
-#include <stdio.h>
-int main()
-{
-	char str[] = "ABCABC";
-	printf("%s", ft_strrchr(str, 'B'));
 }

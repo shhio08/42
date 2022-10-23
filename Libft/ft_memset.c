@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/23 13:35:31 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/23 13:55:23 by stakimot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-void *ft_memset(void *buf, int ch, size_t n)
+
+void	*ft_memset(void *buf, int ch, size_t n)
 {
-	int i = 0;
+	size_t i = 0;
 	char *str;
 
 	str = (char *)buf;
@@ -12,21 +25,3 @@ void *ft_memset(void *buf, int ch, size_t n)
 	}
 	return (buf);
 }
-
-#include <stdio.h>
-int main()
-{
-	char str[] = "01234567";
-	ft_memset(str+1, '*', 3);
-	printf("%s", str);
-}
-
-
-
-// #include <string.h>
-// int main()
-// {
-// 	char str[] = "01234567";
-// 	memset(str+3, '*', 4);
-// 	printf("%s", str);
-// }

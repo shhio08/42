@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/23 13:35:09 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/23 13:35:17 by stakimot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-size_t ft_strlen(const char *str)
+
+size_t	ft_strlen(const char *str)
 {
 	size_t cnt;
 
@@ -8,9 +21,3 @@ size_t ft_strlen(const char *str)
 		cnt++;
 	return (cnt);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	printf("%zu", ft_strlen("asdfgh"));
-// }

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:03:57 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/21 16:43:03 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:49:10 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int check_set(char c, char const *set)
 	return (1);
 }
 
-
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int start;
 	int end;
@@ -43,12 +42,4 @@ char *ft_strtrim(char const *s1, char const *set)
 		dest[count++] = s1[start++];
 	dest[count] = '\0';
 	return (dest);
-}
-
-#include <stdio.h>
-int main()
-{
-	char s1[] = "1234AAA23A";
-	char set[] = "1234";
-	printf("%s", ft_strtrim(s1, set));
 }

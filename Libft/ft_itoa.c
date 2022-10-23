@@ -6,14 +6,13 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:46:46 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/14 13:17:11 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:49:45 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char *str;
 	int num;
@@ -47,10 +46,4 @@ char *ft_itoa(int n)
 		num /= 10; 
 	}
 	return (str);
-}
-
-#include <stdio.h>
-int main()
-{
-	printf("%s", ft_itoa(123));	
 }

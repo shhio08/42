@@ -1,13 +1,21 @@
-int ft_tolower(int c)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/23 13:40:16 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/23 13:40:29 by stakimot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c + ('a' - 'A'));
 	else
 		return (c);
-}
-
-#include <stdio.h>
-int main()
-{
-	printf("%c", (char)ft_tolower('D'));
 }

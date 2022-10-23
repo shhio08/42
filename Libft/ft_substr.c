@@ -6,23 +6,23 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:07:46 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/12 15:33:32 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:57:40 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int i;
-	int j;
+	size_t i;
+	size_t j;
 	char *dest;
 
 	i = 0;
 	j = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == start)
+		if (s[i] == (char)start)
 			break;
 		i++;
 	}
@@ -35,11 +35,4 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 		j++;
 	}
 	return (dest);
-}
-
-#include <stdio.h>
-int main()
-{
-	char str[] = "ABCDEFG";
-	printf("%s",ft_substr(str, 'D', 3));
 }

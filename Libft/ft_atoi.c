@@ -6,11 +6,13 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 17:51:13 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/10 19:36:39 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:46:24 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_atoi(const char *str)
+#include "libft.h"
+
+int	ft_atoi(const char *str)
 {
 	long	num;
 	int		i;
@@ -32,10 +34,4 @@ int ft_atoi(const char *str)
 	if (minus % 2 != 0)
 		num *= -1;
 	return (num);
-}
-
-#include <stdio.h>
-int main()
-{
-	printf("%d", ft_atoi("   ---12a345"));	
 }

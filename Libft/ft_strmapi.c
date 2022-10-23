@@ -6,24 +6,17 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 14:25:02 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/14 15:13:49 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:50:15 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char f(unsigned int i, char c)
-{
-	char a;
-	a = c + 1;
-	return (a);
-}
-
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char *str;
 	int len;
-	int i; 
+	int i;
 
 	len = ft_strlen(s);
 	i = 0;
@@ -37,11 +30,4 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	}
 	str[i] = '\0';
 	return (str);
-}
-
-#include <stdio.h>
-int main()
-{
-	char str[] = "ABC";
-	printf("%s", ft_strmapi(str, *f));
 }

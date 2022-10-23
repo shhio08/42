@@ -6,18 +6,19 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:45:01 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/10 19:13:16 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:47:23 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-char *ft_strdup(const char *s1)
+#include "libft.h"
+
+char	*ft_strdup(const char *s1)
 {
 	char *dest;
 	char *src;
 	int i;
 	int j;
-	
+
 	src = (char *)s1;
 	i = 0;
 	j = 0;
@@ -33,11 +34,4 @@ char *ft_strdup(const char *s1)
 	}
 	dest[j] = '\0';
 	return (dest);
-}
-
-#include <stdio.h>
-int main()
-{
-	char str[] = "ABCDEF";
-	printf("%s", ft_strdup(str));
 }

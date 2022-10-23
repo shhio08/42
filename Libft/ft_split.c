@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:45:00 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/21 19:40:03 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:56:07 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,19 @@ char	**ft_split(char const *s, char c)
 		while (s[i] == c)
 			i++;
 		j = i;
-		while (s[i] != c)
+		while (s[i] != '\0' && s[i] != c)
 			i++;
-		*dest = (char *)malloc(sizeof(char) * (i - j + 1));
+		dest[k] = (char *)malloc(sizeof(char) * (i - j + 1));
+		int l = 0;
 		while (j < i)
-			**dest++ = s[j++];
-		**dest = '\0';
-		*dest++;
+		{
+			dest[k][l] = s[j];
+			l++;
+			j++;
+		}
+		dest[k][l] = '\0';
+		k++;
 	}
-	*dest = NULL;
-	*dest -= word;
+	dest[k] = NULL;
 	return (dest);
-}
-
-#include <stdio.h>
-int main(int argc, char const *argv[])
-{
-	char str[] = "AAbBBbbCCC";
-	char **lst = ft_split(str, 'c');
-	printf("%s\n", *lst);
-	// while (*lst)
-	// {
-	// 	printf("%s\n", *lst++);
-	// }
-	return 0;
 }

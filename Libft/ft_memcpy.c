@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/23 13:36:49 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/23 13:54:55 by stakimot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-void *ft_memcpy(void *buf1, const void *buf2, size_t n)
+void	*ft_memcpy(void *buf1, const void *buf2, size_t n)
 {
-	int i;
+	size_t i;
 	char *dest;
 	const char *src;
 
@@ -14,18 +26,4 @@ void *ft_memcpy(void *buf1, const void *buf2, size_t n)
 		i++;
 	}
 	return (dest);
-}
-
-#include <stdio.h>
-int main()
-{
-	char str1[128] = {1,1,1,1,1,1,1};
-	char str2[] = "asdfgh";
-	for (int i=0; i<7; i++)
-		printf("%#x ",str1[i]);
-    printf("\n");
-	ft_memcpy(str1, str2, 4);
-	for (int j=0; j<7; j++)
-		printf("%#x ",str1[j]);
-    printf("\n");
 }

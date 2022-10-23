@@ -6,13 +6,13 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:06:18 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/21 15:34:41 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:55:49 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-	white(fd, &c, 1);
+	write(fd, &c, 1);
 }

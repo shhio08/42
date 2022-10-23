@@ -1,31 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/23 13:37:16 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/23 13:55:13 by stakimot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-void *ft_memmove(void *buf1, const void *buf2, size_t n)
-{
-	int i;
-	char *dest;
-	const char *src;
 
-	i = 0;
-	dest = buf1;
-	src = buf2;
-	while (i < n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	char *tmp_dest;
+	const char *tmp_src;
+
+	tmp_dest = (char *)dest;
+	tmp_src = (const char *)src;
+	if (tmp_dest > tmp_src)
 	{
-		dest[i] = src[i];
-		i++;
+		while (n > 0)
+		{
+			tmp_dest[n - 1] = tmp_src[n - 1];
+			n--;
+		}
 	}
+	else
+		ft_memcpy(dest, src, n);
 	return (dest);
-}
-
-#include <stdio.h>
-int main(void)
-{
-        char str[] = "abcdefghijklmnopqrstu";
-        
-        printf("移動前：%s\n",str);
-		
-        ft_memmove(str+5, str, 10);
-
-        printf("移動後：%s\n",str);
-
-        return 0;
 }

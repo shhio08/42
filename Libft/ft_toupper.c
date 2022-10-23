@@ -1,12 +1,20 @@
-int ft_toupper(int c)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/23 13:39:48 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/23 13:39:56 by stakimot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		c -= ('a' - 'A');
 	return (c);
-}
-
-#include <stdio.h>
-int main()
-{
-	printf("%c", (char)ft_toupper('a'));
 }

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:38:15 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 13:39:12 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/27 23:35:24 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ size_t	ft_strlcat (char *dst, const char *src, size_t size)
 
 	i = 0;
 	j = 0;
+	if (!dst && src && !size)
+		return (ft_strlen(src));
 	len = ft_strlen(dst);
 	if (len >= size)
 	{

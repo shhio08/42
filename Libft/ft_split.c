@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:45:00 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/27 13:55:26 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:08:51 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char **ft_free(char **dest)
 	int cnt;
 
 	cnt = 0;
-	while(!dest[cnt])
+	while(dest[cnt])
 		free(dest[cnt++]);
 	return (NULL);
 }
@@ -45,7 +45,7 @@ char	**ft_split(char const *s, char c)
 	dest = (char **)malloc(sizeof(char *) * (word + 1));
 	if (!dest)
 		return (NULL);
-	while (s[i])
+	while (k < word)
 	{
 		while (s[i] == c)
 			i++;

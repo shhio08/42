@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:57:36 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 15:00:49 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 00:01:26 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 	j = 0;
 	if (ft_strlen(s2) == 0)
 		return ((char *)s1);
+	if (len == 0)
+		return (NULL);
 	while (s1[i] != '\0' && i + ft_strlen(s2) <= len)
 	{
 		j = 0;
@@ -32,5 +34,5 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 		}
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

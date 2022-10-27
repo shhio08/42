@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:12:55 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 15:05:36 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 00:12:34 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	*ft_calloc(size_t count, size_t size)
 	if (count == 0 || size == 0)
 	{
 		tmp = malloc(1);
+		if (!tmp)
+			return (NULL);
 		ft_bzero(tmp, 1);
+		return (tmp);
 	}
 	tmp = malloc(count * size);
 	if (!tmp)

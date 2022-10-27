@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:38:15 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 01:09:12 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 01:12:45 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ size_t	ft_strlcat (char *dst, const char *src, size_t size)
 	len = ft_strlen(dst);
 	if (len >= size)
 		return (ft_strlen(src) + size);
-	while (len + cnt < (size - 1) && src[cnt])
+	cnt = 0;
+	while (len + cnt + 1 < size && src[cnt])
 	{
 		dst[len + cnt] = src[cnt];
 		cnt++;

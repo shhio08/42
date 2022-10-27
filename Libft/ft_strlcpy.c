@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:37:53 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 14:09:20 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 01:02:59 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 	size_t	i;
 
 	i = 0;
-	if (dstsize == 0)
+	if (!dstsize)
 		return (ft_strlen(src));
-	while (src[i] != '\0' && i < (dstsize - 1))
+	while (!src[i] && i + 1 < dstsize)
 	{
 		dst[i] = src[i];
 		i++;

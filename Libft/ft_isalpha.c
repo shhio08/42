@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:30:06 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 13:30:24 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 00:41:24 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int ft_isalpha(int c)
 {
-	if ((c >= 'a' && c <= 'z')||(c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	return ((c >= 'a' && c <= 'z')||(c >= 'A' && c <= 'Z'));
 }

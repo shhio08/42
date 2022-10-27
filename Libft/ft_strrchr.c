@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:41 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 01:34:35 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 01:48:21 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int i;
-	int j;
+	size_t cnt;
+	int tmp;
 
-	i = 0;
-	j = 0;
-	while (s[i])
+	cnt = 0;
+	tmp = -1;
+	while (s[cnt])
 	{
-		if (s[i] == (char)c)
-			j = i;
-		i++;
+		if (s[cnt] == (char)c)
+			tmp = cnt;
+		cnt++;
 	}
 	if (!c)
-		return ((char *)&s[i]);
-	if (!j)
+		return ((char *)&s[cnt]);
+	if (tmp < 0)
 		return (NULL);
-	return ((char *)&s[j]);
+	return ((char *)&s[tmp]);
 }
 
 

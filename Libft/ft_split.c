@@ -6,11 +6,21 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:45:00 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 13:56:07 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:39:46 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+char **ft_free(char **dest)
+{
+	int cnt;
+
+	cnt = 0;
+	while(!dest[cnt])
+		free(dest[cnt++]);
+	return (NULL);
+}
 
 char	**ft_split(char const *s, char c)
 {
@@ -43,6 +53,11 @@ char	**ft_split(char const *s, char c)
 		while (s[i] != '\0' && s[i] != c)
 			i++;
 		dest[k] = (char *)malloc(sizeof(char) * (i - j + 1));
+		if (!dest[k])
+		{
+			ft_free(dest);
+			return (dest);
+		}
 		int l = 0;
 		while (j < i)
 		{

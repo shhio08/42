@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:03:57 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/27 13:03:37 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 02:56:29 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	start = 0;
 	cnt = 0;
+	if (!s1 || !set)
+		return (NULL);
 	while (1)
 	{
 		if(check_set(s1[start], set) == 0)

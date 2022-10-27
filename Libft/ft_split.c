@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:45:00 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/27 14:08:51 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 02:59:32 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	j = 0;
 	k = 0;
+	if (!s)
+		return (NULL);
 	while (s[cnt])
 	{
 		if (s[cnt] != c && (s[cnt + 1] == c || s[cnt + 1] == '\0'))

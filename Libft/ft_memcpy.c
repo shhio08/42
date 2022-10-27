@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:36:49 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 13:54:55 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/27 22:38:28 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	*ft_memcpy(void *buf1, const void *buf2, size_t n)
 	i = 0;
 	dest = buf1;
 	src = buf2;
+	if (buf1 == NULL && buf2 == NULL)
+		return (NULL);
 	while (i < n)
 	{
 		dest[i] = src[i];

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:40:16 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 13:40:29 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 01:19:42 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
-		return (c + ('a' - 'A'));
-	else
-		return (c);
+		c = c + ('a' - 'A');
+	return (c);
 }

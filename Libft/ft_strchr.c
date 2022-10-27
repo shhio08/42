@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:32:36 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 14:27:42 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 01:25:58 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ char	*ft_strchr(const char *s, int c)
 	int i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		if (s[i] == (unsigned char)c)
+		if (s[i] == (char)c)
 			return ((char *)&s[i]);
 		i++;
 	}
-	if (c == '\0')
+	if (!c)
 		return ((char *)&s[i]);
 	return (0);
 }

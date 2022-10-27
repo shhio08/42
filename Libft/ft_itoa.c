@@ -6,20 +6,26 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:46:46 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 15:20:31 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:02:35 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_itoa(int n)
 {
 	char *str;
-	int num;
+	long num;
 	int digit;
 
-	num = n;
 	digit = 0;
+	num = n;
+	if (n <= 0)
+	{
+		num *= -1;
+		digit++;
+	}
 	while (num > 0)
 	{
 		num /= 10;
@@ -27,21 +33,17 @@ char	*ft_itoa(int n)
 	}
 	num = n;
 	if (n < 0)
-	{
 		num *= -1;
-		digit++;
-	}
 	str = (char *)malloc(sizeof(char) * (digit + 1));
 	if (!str)
-		return (0);
-	if (n < 0)
-		str[0] = '-';
+		return (NULL);
 	str[digit--] = '\0';
 	while (digit >= 0)
 	{
-		// printf("%d %d\n", digit, num);
 		str[digit--] = num % 10 + '0';
-		num /= 10; 
+		num /= 10;
 	}
+	if (n < 0)
+		str[0] = '-';
 	return (str);
 }

@@ -6,20 +6,20 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:45:00 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 02:59:32 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/28 15:31:06 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char **ft_free(char **dest)
+static void ft_free(char **dest)
 {
 	int cnt;
 
 	cnt = 0;
 	while(dest[cnt])
 		free(dest[cnt++]);
-	return (NULL);
+	free(dest);
 }
 
 char	**ft_split(char const *s, char c)

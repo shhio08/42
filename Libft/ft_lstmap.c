@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:43:22 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 12:35:09 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 12:36:41 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*dest;
 	t_list	*tmp;
 
-	if (!lst || !f || !del)
-		return (NULL);
 	dest = NULL;
+	if (!f || !del)
+		return (NULL);
 	while (lst)
 	{
 		tmp = ft_lstnew(f(lst->content));

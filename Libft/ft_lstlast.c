@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:06:56 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 08:43:08 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 10:59:44 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
+	t_list *tmp;
+
 	if (!lst)
 		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-return (lst);
+	tmp = lst;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:41 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 01:49:00 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:50:18 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t cnt;
-	int tmp;
+	size_t	cnt;
+	int		tmp;
 
 	cnt = 0;
 	tmp = -1;

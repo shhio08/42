@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:07:46 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 02:46:39 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 15:10:53 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t i;
-	char *dest;
+	size_t	i;
+	char	*dest;
 
 	i = 0;
 	if (!s)

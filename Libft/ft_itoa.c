@@ -6,21 +6,20 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:46:46 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/27 15:02:35 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:56:15 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_itoa(int n)
+int	get_digit(int n)
 {
-	char *str;
-	long num;
-	int digit;
+	long	num;
+	int		digit;
 
-	digit = 0;
 	num = n;
+	digit = 0;
 	if (n <= 0)
 	{
 		num *= -1;
@@ -31,6 +30,16 @@ char	*ft_itoa(int n)
 		num /= 10;
 		digit++;
 	}
+	return (digit);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*str;
+	long	num;
+	int		digit;
+
+	digit = get_digit(n);
 	num = n;
 	if (n < 0)
 		num *= -1;

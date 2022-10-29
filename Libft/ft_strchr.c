@@ -6,14 +6,15 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:32:36 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 01:43:23 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:48:09 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 char	*ft_strchr(const char *s, int c)
 {
-	size_t cnt;
+	size_t	cnt;
 
 	cnt = 0;
 	while (s[cnt])

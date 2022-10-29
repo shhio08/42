@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 14:25:02 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 03:03:32 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:49:44 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char *str;
-	int len;
-	int i;
+	char	*str;
+	int		len;
+	int		i;
 
 	i = 0;
 	if (!s || !f)

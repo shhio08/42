@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:45:01 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 00:38:37 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:48:25 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char *dest;
-	char *src;
-	int i;
-	int j;
+	char	*dest;
+	char	*src;
+	int		i;
+	int		j;
 
 	src = (char *)s1;
 	i = 0;

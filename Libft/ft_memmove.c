@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:37:16 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 13:55:13 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:46:27 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char *tmp_dest;
-	const char *tmp_src;
+	char		*tmp_dest;
+	const char	*tmp_src;
 
 	tmp_dest = (char *)dest;
 	tmp_src = (const char *)src;

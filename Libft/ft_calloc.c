@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:12:55 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 00:30:03 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:32:09 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void *tmp;
+	void	*tmp;
 
 	if (count == 0 || size == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:31:18 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/23 14:25:06 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:45:13 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t i;
-	unsigned char *tmp;
+	size_t			i;
+	unsigned char	*tmp;
 
 	i = 0;
 	tmp = (unsigned char *)s;

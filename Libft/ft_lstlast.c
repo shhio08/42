@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:06:56 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 11:26:06 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:44:02 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (!lst)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:24:35 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 15:39:40 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 10:30:16 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*tmp;
 
-	while(tmp->next)
+	while(*lst)
 	{
 		tmp = (*lst)->next;
-		ft_lstdelone((*lst));
+		ft_lstdelone(*lst, del);
 	}
 	tmp->next = NULL;
 }

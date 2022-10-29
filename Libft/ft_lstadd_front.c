@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:38:03 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/28 14:50:03 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 10:40:40 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 		return ;
 	if (lst)
 		new->next = *lst;
-	lst = new;
+	*lst = new;
 }

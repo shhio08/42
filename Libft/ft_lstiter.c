@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:40:11 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 08:43:04 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/29 12:51:36 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst | !f)
+	if (!lst || !f)
 		return ;
 	while (lst)
 	{

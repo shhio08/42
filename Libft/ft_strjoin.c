@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:34:37 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 14:48:48 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/30 11:41:30 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,22 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*dest;
-	int		i;
+	size_t	cnt;
 
-	i = 0;
-	if (!s1 || !s2)
+	cnt = 0;
+	if (!s1 && !s2)
 		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
 	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!dest)
-		return (0);
+		return (NULL);
 	while (*s1)
-		dest[i++] = *s1++;
+		dest[cnt++] = *s1++;
 	while (*s2)
-		dest[i++] = *s2++;
-	dest[i] = '\0';
+		dest[cnt++] = *s2++;
+	dest[cnt] = '\0';
 	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:45:01 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 14:48:25 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/30 11:35:28 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,19 @@ char	*ft_strdup(const char *s1)
 {
 	char	*dest;
 	char	*src;
-	int		i;
-	int		j;
+	size_t	cnt;
 
 	src = (char *)s1;
-	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-		i++;
-	dest = (char *)malloc(sizeof(char) * (i + 1));
+	cnt = ft_strlen(s1);
+	dest = (char *)malloc(sizeof(char) * (cnt + 1));
 	if (!dest)
-		return (0);
-	while (src[j])
+		return (NULL);
+	cnt = 0;
+	while (src[cnt])
 	{
-		dest[j] = src[j];
-		j++;
+		dest[cnt] = src[cnt];
+		cnt++;
 	}
-	dest[j] = '\0';
+	dest[cnt] = '\0';
 	return (dest);
 }

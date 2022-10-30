@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:35:17 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 14:47:40 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/30 11:23:55 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
+	size_t	cnt;
 
-	i = 0;
+	cnt = 0;
 	if (!s)
 		return ;
-	while (s[i])
+	while (s[cnt])
 	{
-		ft_putchar_fd(s[i], fd);
-		i++;
+		ft_putchar_fd(s[cnt], fd);
+		cnt++;
 	}
 }

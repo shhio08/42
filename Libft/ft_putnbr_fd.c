@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:43:42 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 14:47:26 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/30 11:23:12 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (n == -2147483648)
+	if (n == INT_MIN)
 		ft_putstr_fd("-2147483648", fd);
 	else
 	{

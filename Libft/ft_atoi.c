@@ -6,32 +6,50 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 17:51:13 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 14:31:09 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/30 11:00:15 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int	check_long(long num, char c, int minus)
+{
+	if (LONG_MAX / 10 < num && c && !minus)
+		return (1);
+	if (LONG_MAX / 10 == num && LONG_MAX % 10 < c - '0' && !minus)
+		return (1);
+	if (LONG_MIN / 10 > -num && c && minus)
+		return (-1);
+	if (LONG_MIN / 10 == -num && LONG_MIN % 10 > -(c - '0') && minus)
+		return (-1);
+	return (0);
+}
+
 int	ft_atoi(const char *str)
 {
 	long	num;
-	int		i;
+	size_t	cnt;
 	int		minus;
 
 	num = 0;
-	i = 0;
+	cnt = 0;
 	minus = 0;
-	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	while ((str[cnt] >= '\t' && str[cnt] <= '\r') || str[cnt] == ' ')
+		cnt++;
+	if (str[cnt] == '+' || str[cnt] == '-')
 	{
-		if (str[i] == '-')
+		if (str[cnt++] == '-')
 			minus++;
-		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-		num = num * 10 + (str[i++] - '0');
+	while (str[cnt] >= '0' && str[cnt] <= '9')
+	{
+		num = num * 10 + (str[cnt++] - '0');
+		if (check_long(num, str[cnt], minus) > 0)
+			return ((int)LONG_MAX);
+		if (check_long(num, str[cnt], minus) < 0)
+			return ((int)LONG_MIN);
+	}
 	if (minus)
 		num *= -1;
-	return (num);
+	return ((int)num);
 }

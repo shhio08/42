@@ -6,26 +6,27 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:45:00 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 22:36:20 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/30 11:31:48 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_free(char **dest)
+static char	**ft_free(char **dest)
 {
-	int	cnt;
+	size_t	cnt;
 
 	cnt = 0;
 	while (dest[cnt])
 		free(dest[cnt++]);
 	free(dest);
+	return (NULL);
 }
 
-int	get_word(char const *s, char c)
+static size_t	get_word(char const *s, char c)
 {
 	size_t	cnt;
-	int		word;
+	size_t	word;
 
 	cnt = 0;
 	word = 0;
@@ -38,9 +39,10 @@ int	get_word(char const *s, char c)
 	return (word);
 }
 
-char	*set_word(int start, int end, char const *s, char *dest)
+static char	*set_word(int start, int end, char const *s)
 {
-	int	cnt;
+	size_t	cnt;
+	char	*dest;
 
 	cnt = 0;
 	dest = (char *)malloc(sizeof(char) * (end - start + 1));
@@ -54,35 +56,29 @@ char	*set_word(int start, int end, char const *s, char *dest)
 
 char	**ft_split(char const *s, char c)
 {
-	int		word;
 	char	**dest;
-	int		i;
-	int		j;
-	int		k;
+	size_t	s_cnt;
+	size_t	start;
+	size_t	d_cnt;
 
-	i = 0;
-	k = 0;
+	s_cnt = 0;
+	d_cnt = 0;
 	if (!s)
 		return (NULL);
-	word = get_word(s, c);
-	dest = (char **)malloc(sizeof(char *) * (word + 1));
+	dest = (char **)malloc(sizeof(char *) * (get_word(s, c) + 1));
 	if (!dest)
 		return (NULL);
-	while (k < word)
+	while (d_cnt < get_word(s, c))
 	{
-		while (s[i] == c)
-			i++;
-		j = i;
-		while (s[i] != '\0' && s[i] != c)
-			i++;
-		dest[k] = set_word(j, i, s, dest[k]);
-		if (!dest[k])
-		{
-			ft_free(dest);
-			return (dest);
-		}
-		k++;
+		while (s[s_cnt] == c)
+			s_cnt++;
+		start = s_cnt;
+		while (s[s_cnt] != '\0' && s[s_cnt] != c)
+			s_cnt++;
+		dest[d_cnt] = set_word(start, s_cnt, s);
+		if (!dest[d_cnt++])
+			return (ft_free(dest));
 	}
-	dest[k] = NULL;
+	dest[d_cnt] = NULL;
 	return (dest);
 }

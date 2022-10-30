@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:57:36 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 14:50:07 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/30 11:57:09 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 {
-	size_t	i;
-	size_t	j;
+	size_t	s1_cnt;
+	size_t	s2_cnt;
 
-	i = 0;
-	j = 0;
-	if (ft_strlen(s2) == 0)
+	if (!ft_strlen(s2))
 		return ((char *)s1);
-	if (len == 0)
+	if (!len)
 		return (NULL);
-	while (s1[i] != '\0' && i + ft_strlen(s2) <= len)
+	s1_cnt = 0;
+	s2_cnt = 0;
+	while (s1[s1_cnt] != '\0' && s1_cnt + ft_strlen(s2) <= len)
 	{
-		j = 0;
-		while (s1[i + j] == s2[j])
+		s2_cnt = 0;
+		while (s1[s1_cnt + s2_cnt] == s2[s2_cnt])
 		{
-			if (s2[j + 1] == '\0')
-				return ((char *)&s1[i]);
-			j++;
+			if (s2[s2_cnt + 1] == '\0')
+				return ((char *)&s1[s1_cnt]);
+			s2_cnt++;
 		}
-		i++;
+		s1_cnt++;
 	}
 	return (NULL);
 }

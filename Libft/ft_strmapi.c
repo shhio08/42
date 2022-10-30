@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 14:25:02 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 14:49:44 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/30 11:50:28 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*str;
-	int		len;
-	int		i;
+	size_t	len;
+	size_t	cnt;
 
-	i = 0;
+	cnt = 0;
 	if (!s || !f)
 		return (NULL);
 	len = ft_strlen(s);
-	str = (char *)malloc(sizeof(char) * len + 1);
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
-	while (i < len)
+	while (cnt < len)
 	{
-		str[i] = f(i, s[i]);
-		i++;
+		str[cnt] = f(cnt, s[cnt]);
+		cnt++;
 	}
-	str[i] = '\0';
+	str[cnt] = '\0';
 	return (str);
 }

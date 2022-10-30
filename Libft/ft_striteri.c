@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:37:00 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/29 14:48:37 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/30 11:36:14 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	int	i;
+	size_t	cnt;
 
-	i = 0;
+	cnt = 0;
 	if (!s || !f)
 		return ;
-	while (s[i] != '\0')
+	while (s[cnt])
 	{
-		f(i, &s[i]);
-		i++;
+		f(cnt, &s[cnt]);
+		cnt++;
 	}
 }

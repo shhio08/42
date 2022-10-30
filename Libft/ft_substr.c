@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:07:46 by stakimot          #+#    #+#             */
-/*   Updated: 2022/10/30 12:02:18 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/10/30 17:16:00 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (ft_strlen(s) < start)
 		len = 0;
-	if (ft_strlen(s) < start + len)
+	else if (ft_strlen(s) < start + len)
 		len = ft_strlen(s) - start;
 	dest = (char *)malloc(sizeof(char) * (len + 1));
 	if (!dest)

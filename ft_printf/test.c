@@ -8,5 +8,8 @@ int main(int argc, char const *argv[])
 	// printf("%p\n", a);
 	// write(1, addr, 1);
 
-	printf("%s", "ABC");
+	// printf("%u", -10);
+
+	char c = 'A';
+	write(1, &c, 1);
 }

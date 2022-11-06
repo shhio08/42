@@ -1,30 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   num.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 15:46:46 by stakimot          #+#    #+#             */
-/*   Updated: 2022/11/06 11:06:45 by stakimot         ###   ########.fr       */
+/*   Created: 2022/11/06 18:43:03 by stakimot          #+#    #+#             */
+/*   Updated: 2022/11/06 18:43:04 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	get_digit(int n)
+int	put_num(int n)
 {
-	long	num;
+	char	*num;
+	int		cnt;
+
+	num = ft_itoa(n);
+	cnt = put_str(num);
+	free(num);
+	return (cnt);
+}
+
+int	u_put_num(unsigned int n)
+{
+	char	*num;
+	int		cnt;
+	num = u_ft_itoa(n);
+	cnt = put_str(num);
+	free(num);
+	return (cnt);
+}
+
+int	u_get_digit(unsigned int num)
+{
 	int		digit;
 
-	num = n;
 	digit = 0;
-	if (n <= 0)
-	{
-		num *= -1;
-		digit++;
-	}
+	if (num == 0)
+		return (1);
 	while (num > 0)
 	{
 		num /= 10;
@@ -33,16 +48,12 @@ int	get_digit(int n)
 	return (digit);
 }
 
-char	*ft_itoa(int n)
+char	*u_ft_itoa(unsigned int num)
 {
 	char	*str;
-	long	num;
 	int		digit;
 
-	digit = get_digit(n);
-	num = n;
-	if (n < 0)
-		num *= -1;
+	digit = u_get_digit(num);
 	str = (char *)malloc(sizeof(char) * (digit + 1));
 	if (!str)
 		return (NULL);
@@ -52,7 +63,5 @@ char	*ft_itoa(int n)
 		str[digit--] = num % 10 + '0';
 		num /= 10;
 	}
-	if (n < 0)
-		str[0] = '-';
 	return (str);
 }

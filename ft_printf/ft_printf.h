@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:42:19 by stakimot          #+#    #+#             */
-/*   Updated: 2022/11/05 16:09:45 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/11/06 18:58:47 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@
 #include <stdlib.h>
 #include "Libft/libft.h"
 
-int	put_str(char *str);
-int	put_void(void *a);
-int	put_num(int n);
-int	check_type(char c, va_list lst);
-int	ft_printf(const char *input, ...);
-int	get_digit(int n);
-char	*ft_itoa(int n);
-void	ft_putchar_fd(char c, int fd);
-int	u_put_num(unsigned int n);
-char	*u_ft_itoa(unsigned int n);
+int		ft_printf(const char *format, ...);
+int		change_base(unsigned int num, int n);
+int		put_pointer(unsigned long long num);
+int		put_char(char c);
+int		put_str(char *str);
+char	*u_ft_itoa(unsigned int num);
+int		u_put_num(unsigned int n);
+int		put_num(int n);
 
 #endif

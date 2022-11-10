@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:43:03 by stakimot          #+#    #+#             */
-/*   Updated: 2022/11/06 18:43:04 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:11:09 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,16 @@ int	u_put_num(unsigned int n)
 {
 	char	*num;
 	int		cnt;
+
 	num = u_ft_itoa(n);
 	cnt = put_str(num);
 	free(num);
 	return (cnt);
 }
 
-int	u_get_digit(unsigned int num)
+static int	u_get_digit(unsigned int num)
 {
-	int		digit;
+	int	digit;
 
 	digit = 0;
 	if (num == 0)

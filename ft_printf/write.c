@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:48:53 by stakimot          #+#    #+#             */
-/*   Updated: 2022/11/06 17:49:43 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/11/06 19:20:36 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	put_str(char *str)
 	while (str[cnt])
 	{
 		byte = write (1, &str[cnt], 1);
-		if (byte < 0)
+		if (byte == -1)
 			return (-1);
 		cnt += byte;
 	}

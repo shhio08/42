@@ -6,13 +6,13 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:05:29 by stakimot          #+#    #+#             */
-/*   Updated: 2022/11/06 18:43:23 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:11:34 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	check_type(char c, va_list lst)
+static int	check_type(char c, va_list lst)
 {
 	int	cnt;
 
@@ -28,9 +28,9 @@ int	check_type(char c, va_list lst)
 	else if (c == 'u')
 		cnt = u_put_num(va_arg(lst, unsigned int));
 	else if (c == 'x')
-		cnt = change_base(va_arg(lst,unsigned int), 0);
+		cnt = change_base(va_arg(lst, unsigned int), 0);
 	else if (c == 'X')
-		cnt = change_base(va_arg(lst,unsigned int), 1);
+		cnt = change_base(va_arg(lst, unsigned int), 1);
 	else if (c == '%')
 		cnt = put_char(c);
 	return (cnt);
@@ -39,8 +39,9 @@ int	check_type(char c, va_list lst)
 int	ft_printf(const char *format, ...)
 {
 	va_list	lst;
-	int	cnt;
-	int	num;
+	int		cnt;
+	int		num;
+	int		byte;
 
 	cnt = 0;
 	num = 0;
@@ -48,17 +49,13 @@ int	ft_printf(const char *format, ...)
 	while (format[cnt])
 	{
 		if (format[cnt] == '%')
-		{
-			cnt++;
-			num += check_type(format[cnt], lst);
-			cnt++;
-		}
+			byte = check_type(format[++cnt], lst);
 		else
-		{
-			write(1, &format[cnt], 1);
-			cnt++;
-			num++;
-		}
+			byte = write(1, &format[cnt], 1);
+		if (byte == -1)
+			return (0);
+		num += byte;
+		cnt++;
 	}
 	va_end(lst);
 	return (num);

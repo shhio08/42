@@ -6,18 +6,18 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:42:19 by stakimot          #+#    #+#             */
-/*   Updated: 2022/11/06 18:58:47 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/11/06 19:16:45 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <stdarg.h>
-#include <stddef.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include "Libft/libft.h"
+# include <stdarg.h>
+# include <stddef.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include "Libft/libft.h"
 
 int		ft_printf(const char *format, ...);
 int		change_base(unsigned int num, int n);

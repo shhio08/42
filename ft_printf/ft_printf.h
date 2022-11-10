@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:42:19 by stakimot          #+#    #+#             */
-/*   Updated: 2022/11/06 19:16:45 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:19:13 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 # include "Libft/libft.h"
 
 int		ft_printf(const char *format, ...);

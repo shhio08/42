@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:24:49 by stakimot          #+#    #+#             */
-/*   Updated: 2022/11/16 15:33:42 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:37:01 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char *read_buff(int fd)
 
 	tmp = NULL;
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	save = NULL;
 	if (!buff)
 		return (NULL);
 	while (!ft_strchr(save, '\n'))
@@ -28,23 +29,26 @@ char *read_buff(int fd)
 		byte = read(fd, buff, 4);
 		if (byte == -1)
 			return (NULL);
-		save = (char *)malloc(sizeof(char) * (ft_strlen(tmp) + BUFFER_SIZE + 1));
-		if (!save)
-			return (NULL);
+		// save = (char *)malloc(sizeof(char) * (ft_strlen(tmp) + BUFFER_SIZE + 1));
+		// if (!save)
+		// 	return (NULL);
 		save = ft_strjoin(tmp, buff);
-		tmp = (char *)malloc(sizeof(char) * (ft_strlen(save) + 1));
+		free(tmp);
+		free(buff);
+		// tmp = (char *)malloc(sizeof(char) * (ft_strlen(save) + 1));
 		tmp = save;
 	}
+	free(tmp);
 	return (save);
 }
 
 char *make_line(char *buff, char *save)
 {
 	char	*line;
-	int		len;
-	int		s_len;
-	int		cnt;
-	int		b_cnt;
+	size_t	len;
+	size_t	s_len;
+	size_t	cnt;
+	size_t	b_cnt;
 
 	len = 0;
 	cnt = 0;
@@ -52,7 +56,7 @@ char *make_line(char *buff, char *save)
 	s_len = ft_strlen(save);
 	while (buff[len] != '\n')
 		len++;
-	line = (char *)malloc(sizeof(char) * (s_len + len + 1));
+	line = (char *)malloc(sizeof(char) * (s_len + len + 2));
 	if (!line)
 		return (NULL);
 	while (cnt < s_len)
@@ -62,20 +66,22 @@ char *make_line(char *buff, char *save)
 	}
 	while (cnt < s_len + len)
 		line[cnt++] = buff[b_cnt++];
-	line[cnt] = '\n';
+	line[cnt++] = '\n';
+	line[cnt] = '\0';
 	return (line);
 }
 char *make_save(char *buff)
 {
-	int		len;
-	int		b_cnt;
-	int		s_cnt;
+	size_t	len;
+	size_t	b_cnt;
+	size_t	s_cnt;
 	char	*save;
 
 	b_cnt = 0;
 	s_cnt = 0;
 	while (buff[b_cnt] != '\n')
 		b_cnt++;
+	b_cnt += 1;
 	len = ft_strlen(buff) - b_cnt;
 	save = (char *)malloc(sizeof(char) * len + 1);
 	if (!save)
@@ -88,11 +94,12 @@ char *make_save(char *buff)
 
 char	*get_next_line(int fd)
 {
-	char	*buff;
+	char		*buff;
 	static char	*save;
-	char	*line;
-	int		cnt;
+	char		*line;
+	// int			cnt;
 
+	
 	buff = read_buff(fd);
 	if (!buff)
 		return (NULL);
@@ -115,12 +122,14 @@ int	main()
 	char *gnl;
 
 	fd = open("test.txt", O_RDONLY);
-	while (1)
-	{
-		gnl = get_next_line(fd);
-		if (!gnl)
-			return (0);
-		printf("%s", gnl);
-	}
+	// while (1)
+	// {
+		// gnl = get_next_line(fd);
+		// if (!gnl)
+		// 	return (0);
+		// printf("%s", gnl);
+	// }
+	gnl = get_next_line(fd);
+	printf("%s", gnl);
 	return(0);
 }

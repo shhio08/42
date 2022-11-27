@@ -3,8 +3,9 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-#define BUFFER_SIZE 4
+#define BUFFER_SIZE 1
 
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);

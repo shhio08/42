@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:24:49 by stakimot          #+#    #+#             */
-/*   Updated: 2022/12/06 16:36:06 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/12/06 20:09:52 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,16 @@ char *make_line(char *buff, char *save)
 	len = 0;
 	cnt = 0;
 	b_cnt = 0;
-	s_len = ft_strlen(save);
+	s_len = 0;
+	while (save && save[s_len] != '\n' && save[s_len] != '\0')
+		s_len++;
+	if (save && save[s_len] == '\n')
+		s_len++;
 	while (buff && buff[len] != '\n' && buff[len] != '\0')
 		len++;
-	line = (char *)malloc(sizeof(char) * (s_len + len + 2));
+	if (buff && buff[len] == '\n')
+		len++;
+	line = (char *)malloc(sizeof(char) * (s_len + len + 1));
 	if (!line)
 		return (NULL);
 	while (cnt < s_len)
@@ -75,29 +81,45 @@ char *make_line(char *buff, char *save)
 	return (line);
 }
 
-char *make_save(char *buff)
+char *make_save(char *buff, char *save)
 {
 	size_t	len;
 	size_t	b_cnt;
 	size_t	s_cnt;
-	char	*save;
+	size_t	cnt;
+	char	*tmp;
 
 	b_cnt = 0;
 	s_cnt = 0;
-	if (!buff)
+	if (!buff && !save)
 		return (NULL);
-	while (buff[b_cnt] != '\n' && buff[b_cnt] != '\0')
-		b_cnt++;
-	if (buff[b_cnt] == '\n')
-		b_cnt++;
-	len = ft_strlen(buff) - b_cnt;
-	save = (char *)malloc(sizeof(char) * len + 1);
-	if (!save)
+	if (buff)
+	{
+		while (buff[b_cnt] != '\n' && buff[b_cnt])
+			b_cnt += 1;
+		if (buff[b_cnt] == '\n')
+			b_cnt += 1;
+		len = ft_strlen(buff) - b_cnt;
+	}
+	else
+	{
+		while (save[s_cnt] != '\n')
+			s_cnt += 1;
+		if (save[s_cnt] == '\n')
+			s_cnt += 1;
+		len = ft_strlen(save) - s_cnt;
+	}
+	// printf("num:%zu\n", len);
+	tmp = (char *)malloc(sizeof(char) * len + 1);
+	if (!tmp)
 		return (NULL);
-	while (s_cnt < len)
-		save[s_cnt++] = buff[b_cnt++];
-	save[s_cnt] = '\0';
-	return (save);
+	cnt = 0;
+	while (save && save[s_cnt])
+		tmp[cnt++] = save[s_cnt++];
+	while (buff && buff[b_cnt])
+		tmp[cnt++] = buff[b_cnt++];
+	tmp[cnt] = '\0';
+	return (tmp);
 }
 
 char	*get_next_line(int fd)
@@ -107,35 +129,46 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	buff = NULL;
-	line = NULL;
-	buff = read_buff(fd);
+	// printf("1=====\n%s,%s,%s\n", buff, save, line);
+	if (!ft_strchr(save, '\n'))
+		buff = read_buff(fd);
+	// printf("2=====\n%s,%s,%s\n", buff, save, line);
 	if (!buff && !save)
 		return (NULL);
 	line = make_line(buff, save);
+	// printf("3=====\n%s,%s,%s\n", buff, save, line);
 	if (!line)
 		return (NULL);
-	save = make_save(buff);
+	save = make_save(buff, save);
 	free(buff);
 	buff = NULL;
+	// printf("4=====\n%s,%s,%s\n", buff, save, line);
 	return (line);
 }
 
 
-#include <stdlib.h>
+// #include <stdlib.h>
 
-int	main()
-{
-	int fd;
-	char *gnl;
+// int	main()
+// {
+// 	int fd;
+// 	char *gnl;
 
-	fd = open("test.txt", O_RDONLY);
-	while (1)
-	{
-		gnl = get_next_line(fd);
-		printf("%s", gnl);
-		if (!gnl)
-			return (0);
-	}
-	// system("leaks a.out");
-	return(0);
-}
+// 	fd = open("test.txt", O_RDONLY);
+// 	// fd = open("tester/files/nl", O_RDONLY);
+// 	// gnl = get_next_line(fd);
+// 	// gnl = get_next_line(fd);
+// 	// gnl = get_next_line(fd);
+// 	// gnl = get_next_line(fd);
+// 	// gnl = get_next_line(fd);
+// 	// gnl = get_next_line(fd);
+// 	while (1)
+// 	{
+// 		gnl = get_next_line(fd);
+// 		// printf("[%s]", gnl);
+// 		if (!gnl)
+// 			return (0);
+// 	}
+// 	// system("leaks a.out");
+// 	return(0);
+// }

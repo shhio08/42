@@ -9,7 +9,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <stdio.h>
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 1

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:32:12 by stakimot          #+#    #+#             */
-/*   Updated: 2022/11/27 15:54:55 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:04:50 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (ft_strdup(s2));
 	if (!s2)
 		return (ft_strdup(s1));
+	// printf("test");
 	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!dest)
 		return (NULL);
@@ -62,6 +63,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (*s2)
 		dest[cnt++] = *s2++;
 	dest[cnt] = '\0';
+	// printf("%zu", ft_strlen(dest));
 	return (dest);
 }
 

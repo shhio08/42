@@ -6,14 +6,19 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:24:49 by stakimot          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/12/06 20:09:52 by stakimot         ###   ########.fr       */
+=======
+/*   Updated: 2022/12/21 02:33:01 by stakimot         ###   ########.fr       */
+>>>>>>> 37eafaf8df8e16c3fc21990ad5f9a8e3fca68756
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char *read_buff(int fd)
+char *get_next_line(int fd)
 {
+<<<<<<< HEAD
 	char	*buff;
 	char	*save;
 	char	*tmp;
@@ -148,6 +153,15 @@ char	*get_next_line(int fd)
 
 
 // #include <stdlib.h>
+=======
+	char		buff;
+	static char	save;
+	char		line;
+	
+}
+
+#include <stdlib.h>
+>>>>>>> 37eafaf8df8e16c3fc21990ad5f9a8e3fca68756
 
 // int	main()
 // {

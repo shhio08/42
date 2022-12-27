@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:59:07 by stakimot          #+#    #+#             */
-/*   Updated: 2022/12/21 16:04:19 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/12/27 12:04:04 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,18 @@ char	*read_save(int fd, char *save)
 	{
 		byte = read(fd, buff, BUFFER_SIZE);
 		if (byte <= 0)
-			break;
+			break ;
 		buff[byte] = '\0';
-		printf("%s", buff);
 		save = ft_strjoin(save, buff);
 	}
 	free(buff);
 	buff = NULL;
 	if (byte == -1)
 		return (NULL);
-	// printf(":%zu", ft_strlen(save));
 	return (save);
 }
 
-char	*make_line(char *save, int cnt)
+char	*make_line(char *save, size_t cnt)
 {
 	char	*line;
 	size_t	l_cnt;
@@ -52,11 +50,10 @@ char	*make_line(char *save, int cnt)
 		l_cnt++;
 	}
 	line[l_cnt] = '\0';
-	// printf("test:");
 	return (line);
 }
 
-char	*make_save(char *save, int cnt)
+char	*make_save(char *save, size_t cnt)
 {
 	char	*new_save;
 	size_t	len;
@@ -69,12 +66,11 @@ char	*make_save(char *save, int cnt)
 	if (!new_save)
 		return (NULL);
 	n_cnt = 0;
-	while (save[len])
-		new_save[n_cnt++] = save[len++];
+	while (save[cnt])
+		new_save[n_cnt++] = save[cnt++];
 	new_save[n_cnt] = '\0';
 	free(save);
 	save = NULL;
-	// printf("test:");
 	return (new_save);
 }
 
@@ -85,14 +81,15 @@ char	*get_next_line(int fd)
 	size_t		cnt;
 
 	cnt = 0;
-	// printf("test:");
 	save = read_save(fd, save);
-	// printf(":%zu", ft_strlen(save));
-	// while (save && save[cnt] != '\n' || save[cnt] != '\0')
-	// {
-	// 	cnt++;
-	// 	printf("%zu\n",cnt);
-	// }
+	if (!save)
+		return (save);
+	while ((save[cnt] != '\n' && save[cnt] != '\0'))
+	{
+		cnt++;
+	}
+	if (save[cnt] == '\n')
+		cnt ++;
 	line = make_line(save, cnt);
 	save = make_save(save, cnt);
 	return (line);
@@ -102,12 +99,11 @@ int main()
 {
 	int		fd;
 	char	*gnl;
-
 	fd = open("test.txt", O_RDONLY);
 	while (1)
 	{
 		gnl = get_next_line(fd);
-		// printf("%s", gnl);
+		printf("%s", gnl);
 		if (!gnl)
 			return (0);
 		free(gnl);

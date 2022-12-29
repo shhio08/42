@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:59:07 by stakimot          #+#    #+#             */
-/*   Updated: 2022/12/27 16:32:20 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/12/29 20:13:37 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ char	*read_save(int fd, char *save)
 		free(save);
 		save = tmp;
 	}
-	free(buff);
-	buff = NULL;
-	free(tmp);
-	tmp = NULL;
+	get_free(buff);
 	if (byte == -1)
 		return (NULL);
 	return (save);
@@ -46,24 +43,16 @@ char	*make_line(char *save, size_t cnt)
 	char	*line;
 	size_t	l_cnt;
 
-	// printf(">%c<\n", save[41]);
 	l_cnt = 0;
 	line = (char *)malloc(sizeof(char) * (cnt + 1));
-	// printf("Z%sZ\n", line);
 	if (!line)
 		return (NULL);
-	// printf(">%c<\n", save[41]);
 	while (l_cnt < cnt)
 	{
-		// printf("?%c?\n", save[l_cnt]);
 		line[l_cnt] = save[l_cnt];
 		l_cnt++;
 	}
-	// printf(">%c<\n", save[41]);
-	// printf("[%c]\n", line[l_cnt]);
 	line[l_cnt] = '\0';
-	// printf("[%c]\n", line[l_cnt]);
-	// printf(">%c<\n", save[41]);
 	return (line);
 }
 
@@ -73,8 +62,11 @@ char	*make_save(char *save, size_t cnt)
 	size_t	len;
 	size_t	n_cnt;
 
-	if (save[cnt] == '\n' || save[cnt] == '\0')
+	if (save[cnt] == '\0')
+	{
+		get_free(save);
 		return (NULL);
+	}
 	len = ft_strlen(save) - cnt;
 	new_save = (char *)malloc(sizeof(char) * len + 1);
 	if (!new_save)
@@ -83,8 +75,7 @@ char	*make_save(char *save, size_t cnt)
 	while (save[cnt])
 		new_save[n_cnt++] = save[cnt++];
 	new_save[n_cnt] = '\0';
-	free(save);
-	save = NULL;
+	get_free(save);
 	return (new_save);
 }
 
@@ -104,27 +95,24 @@ char	*get_next_line(int fd)
 	}
 	if (save[cnt] == '\n')
 		cnt ++;
-	// printf("|%c|\n", save[41]);
 	line = make_line(save, cnt);
-	// printf("|%c|\n", save[41]);
-	printf("--%s---%s\n", save, line);
 	save = make_save(save, cnt);
 	return (line);
 }
 
-int main(int argc, char const *argv[])
-{
-	int		fd;
-	char	*gnl;
-	fd = open("test.txt", O_RDONLY);
-	while (1)
-	{
-		gnl = get_next_line(fd);
-		// printf("%s", gnl);
-		if (!gnl)
-			return (0);
-		free(gnl);
-	}
-	system("leaks a.out");
-	return (0);
-}
+// int main(int argc, char const *argv[])
+// {
+// 	int		fd;
+// 	char	*gnl;
+// 	fd = open("test.txt", O_RDONLY);
+// 	while (1)
+// 	{
+// 		gnl = get_next_line(fd);
+// 		// printf("%s", gnl);
+// 		if (!gnl)
+// 			break ;
+// 		free(gnl);
+// 	}
+// 	system("leaks a.out");
+// 	return (0);
+// }

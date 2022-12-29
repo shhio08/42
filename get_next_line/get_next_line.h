@@ -14,6 +14,7 @@
 # define BUFFER_SIZE 1
 #endif
 
+char	*get_free(char *s);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);

@@ -6,11 +6,18 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:32:12 by stakimot          #+#    #+#             */
-/*   Updated: 2022/12/27 12:48:04 by stakimot         ###   ########.fr       */
+/*   Updated: 2022/12/29 20:12:28 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*get_free(char *s)
+{
+	free(s);
+	s = NULL;
+	return (NULL);
+}
 
 char	*ft_strchr(const char *s, int c)
 {

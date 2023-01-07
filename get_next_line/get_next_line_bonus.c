@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:59:07 by stakimot          #+#    #+#             */
-/*   Updated: 2023/01/07 20:43:51 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:57:47 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_free(char *s)
 {
@@ -88,38 +88,41 @@ char	*make_save(char *save, size_t cnt)
 
 char	*get_next_line(int fd)
 {
-	static char	*save;
+	static char	*save[OPEN_MAX];
 	char		*line;
 	size_t		cnt;
 
 	cnt = 0;
-	save = read_save(fd, save);
-	if (!save)
-		return (save);
-	while ((save[cnt] != '\n' && save[cnt] != '\0'))
+	save[fd] = read_save(fd, save[fd]);
+	if (!save[fd])
+		return (save[fd]);
+	while ((save[fd][cnt] != '\n' && save[fd][cnt] != '\0'))
 	{
 		cnt++;
 	}
-	if (save[cnt] == '\n')
+	if (save[fd][cnt] == '\n')
 		cnt ++;
-	line = make_line(save, cnt);
-	save = make_save(save, cnt);
+	line = make_line(save[fd], cnt);
+	save[fd] = make_save(save[fd], cnt);
 	return (line);
 }
 
-// int main(int argc, char const *argv[])
-// {
-// 	int		fd;
-// 	char	*gnl;
-// 	fd = open("test.txt", O_RDONLY);
-// 	while (1)
-// 	{
-// 		gnl = get_next_line(fd);
-// 		// printf("%s", gnl);
-// 		if (!gnl)
-// 			break ;
-// 		free(gnl);
-// 	}
-// 	system("leaks a.out");
-// 	return (0);
-// }
+#include<fcntl.h>
+int main(int argc, char const *argv[])
+{
+	int		fd;
+	int		fd1;
+	char	*gnl;
+	char	*gnl1;
+
+	fd = open("test.txt", O_RDONLY);
+	fd1 = open("test1.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd1));
+	// system("leaks a.out");
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:59:07 by stakimot          #+#    #+#             */
-/*   Updated: 2023/01/07 21:21:12 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:23:49 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,22 +107,27 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// #include<fcntl.h>
-// int main(int argc, char const *argv[])
-// {
-// 	int		fd;
-// 	int		fd1;
-// 	char	*gnl;
-// 	char	*gnl1;
+#include<fcntl.h>
+int main()
+{
+	int		fd;
+	int		fd1;
+	char	*gnl;
+	char	*gnl1;
 
-// 	fd = open("test.txt", O_RDONLY);
-// 	fd1 = open("test1.txt", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd1));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd1));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd1));
-// 	// system("leaks a.out");
-// 	return (0);
-// }
+	fd = open("test.txt", O_RDONLY);
+	fd1 = open("test1.txt", O_RDONLY);
+	printf("%d,%d", fd, fd1);
+	while (1)
+	{
+		gnl = get_next_line(fd);
+		gnl1 = get_next_line(fd1);
+		if (!gnl && !gnl1)
+			break;
+		printf("%s", gnl);
+		printf("%s", gnl1);
+		free(gnl);
+		free(gnl1);
+	}
+	return (0);
+}

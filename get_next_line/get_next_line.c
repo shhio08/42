@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:59:07 by stakimot          #+#    #+#             */
-/*   Updated: 2023/01/27 10:09:43 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/01/27 10:33:07 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,12 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-
 // #include <fcntl.h>
 // int main()
 // {
 // 	int		fd;
 // 	char	*gnl;
-// 	fd = open("test.txt", O_RDONLY);
+// 	fd = open("test", O_RDONLY);
 // 	while (1)
 // 	{
 // 		gnl = get_next_line(fd);
@@ -122,5 +121,6 @@ char	*get_next_line(int fd)
 // 		printf("%s", gnl);
 // 		free(gnl);
 // 	}
+// 	// system("leaks a.out");
 // 	return (0);
 // }

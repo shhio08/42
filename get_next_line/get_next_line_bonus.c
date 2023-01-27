@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:59:07 by stakimot          #+#    #+#             */
-/*   Updated: 2023/01/27 10:53:30 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:09:02 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*read_save(int fd, char *save)
 	}
 	get_free(buff);
 	if (byte == -1)
-		return (NULL);
+		return (get_free(save));
 	return (save);
 }
 
@@ -53,7 +53,7 @@ char	*make_line(char *save, size_t cnt)
 	l_cnt = 0;
 	line = (char *)malloc(sizeof(char) * (cnt + 1));
 	if (!line)
-		return (NULL);
+		return (get_free(save));
 	while (l_cnt < cnt)
 	{
 		line[l_cnt] = save[l_cnt];
@@ -70,14 +70,11 @@ char	*make_save(char *save, size_t cnt)
 	size_t	n_cnt;
 
 	if (save[cnt] == '\0')
-	{
-		get_free(save);
-		return (NULL);
-	}
+		return (get_free(save));
 	len = ft_strlen(save) - cnt;
 	new_save = (char *)malloc(sizeof(char) * len + 1);
 	if (!new_save)
-		return (NULL);
+		return (get_free(save));
 	n_cnt = 0;
 	while (save[cnt])
 		new_save[n_cnt++] = save[cnt++];

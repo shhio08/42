@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:59:07 by stakimot          #+#    #+#             */
-/*   Updated: 2023/01/27 10:33:24 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/01/27 10:53:30 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ char	*get_next_line(int fd)
 	size_t		cnt;
 
 	cnt = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	save[fd] = read_save(fd, save[fd]);
 	if (!save[fd])
 		return (save[fd]);

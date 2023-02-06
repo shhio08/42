@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:59:07 by stakimot          #+#    #+#             */
-/*   Updated: 2023/01/07 20:43:51 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:08:57 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*read_save(int fd, char *save)
 	}
 	get_free(buff);
 	if (byte == -1)
-		return (NULL);
+		return (get_free(save));
 	return (save);
 }
 
@@ -53,7 +53,7 @@ char	*make_line(char *save, size_t cnt)
 	l_cnt = 0;
 	line = (char *)malloc(sizeof(char) * (cnt + 1));
 	if (!line)
-		return (NULL);
+		return (get_free(save));
 	while (l_cnt < cnt)
 	{
 		line[l_cnt] = save[l_cnt];
@@ -70,14 +70,11 @@ char	*make_save(char *save, size_t cnt)
 	size_t	n_cnt;
 
 	if (save[cnt] == '\0')
-	{
-		get_free(save);
-		return (NULL);
-	}
+		return (get_free(save));
 	len = ft_strlen(save) - cnt;
 	new_save = (char *)malloc(sizeof(char) * len + 1);
 	if (!new_save)
-		return (NULL);
+		return (get_free(save));
 	n_cnt = 0;
 	while (save[cnt])
 		new_save[n_cnt++] = save[cnt++];
@@ -93,6 +90,8 @@ char	*get_next_line(int fd)
 	size_t		cnt;
 
 	cnt = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	save = read_save(fd, save);
 	if (!save)
 		return (save);
@@ -107,19 +106,20 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int main(int argc, char const *argv[])
+// #include <fcntl.h>
+// int main()
 // {
 // 	int		fd;
 // 	char	*gnl;
-// 	fd = open("test.txt", O_RDONLY);
+// 	fd = open("test", O_RDONLY);
 // 	while (1)
 // 	{
 // 		gnl = get_next_line(fd);
-// 		// printf("%s", gnl);
 // 		if (!gnl)
 // 			break ;
+// 		printf("%s", gnl);
 // 		free(gnl);
 // 	}
-// 	system("leaks a.out");
+// 	// system("leaks a.out");
 // 	return (0);
 // }

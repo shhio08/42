@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:20:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/04 15:51:00 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/06 10:35:56 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <signal.h>
 #include <stdio.h>
 
-void	signal_handler(int sig, struct sigaction sa, void *content)
+void	signal_handler(int sig, siginfo_t *sa, void *content)
 {
-	printf("test");
+	ft_putstr_fd("test", 1);
 	return;
 }
 
@@ -30,15 +30,15 @@ int main()
 	ft_putstr_fd("\n", 1);
 	if (sigemptyset(&sa.sa_mask) == -1)
 		exit(1);
-	sa.sa_handler = signal_handler;
-	sa.sa_flags = 0;
+	sa.sa_sigaction = signal_handler;
+	sa.sa_flags = SA_SIGINFO;
 	while (1)
 	{
-		pause();
 		if (sigaction(SIGUSR1, &sa, NULL) == -1)
 			exit(1);
 		if (sigaction(SIGUSR2, &sa, NULL) == -1)
 			exit(1);
+		pause();
 	}
 	return (0);
 }

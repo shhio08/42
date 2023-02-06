@@ -6,11 +6,12 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:19:31 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/04 15:52:58 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/06 10:43:02 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
+#include "Libft/libft.h"
 
 void sent_signal(pid_t pid, char *str)
 {
@@ -20,7 +21,7 @@ void sent_signal(pid_t pid, char *str)
 	i = 0;
 	while (str[i])
 	{
-		cnt = 0;
+		cnt = 7;
 		while (cnt < 8)
 		{
 			if(str[i] >> cnt & 1)
@@ -31,11 +32,11 @@ void sent_signal(pid_t pid, char *str)
 		}
 		i++;
 	}
-	while (cnt++ < 11)
-		kill(pid, SIGUSR2);
-	kill(pid, SIGUSR1);
-	while (cnt++ < 13)
-		kill(pid, SIGUSR2);
+	// while (cnt++ < 11)
+	// 	kill(pid, SIGUSR2);
+	// kill(pid, SIGUSR1);
+	// while (cnt++ < 13)
+	// 	kill(pid, SIGUSR2);
 }
 
 
@@ -45,7 +46,8 @@ int	main(int argc, char **argv)
 	int	pid;
 
 	if (argc < 2)
-		return ;
-	pid = ft=atoiargv[1];
+		return (0);
+	pid = ft_atoi((const char *)argv[1]);
 	sent_signal(pid, argv[2]);
+	return 0;
 }

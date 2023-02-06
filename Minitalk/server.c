@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:20:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/06 10:35:56 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/06 12:26:09 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,18 @@
 
 void	signal_handler(int sig, siginfo_t *sa, void *content)
 {
-	ft_putstr_fd("test", 1);
+	int			bit;
+	static char	c;
+
+	
+		c << 1;
+	if (sig == SIGUSR1)
+		c++;
+	ft_putchar_fd(c, 1);
+	// if (sig == SIGUSR1)
+	// 	ft_putchar_fd('1', 1);
+	// else
+	// 	ft_putchar_fd('0', 1);
 	return;
 }
 

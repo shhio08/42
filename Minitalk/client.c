@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:19:31 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/06 10:43:02 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:56:14 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,17 @@ void sent_signal(pid_t pid, char *str)
 	while (str[i])
 	{
 		cnt = 7;
-		while (cnt < 8)
+		while (cnt-- >= 0)
 		{
 			if(str[i] >> cnt & 1)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			cnt++;
+				usleep(100);
 		}
 		i++;
 	}
+	return ;
 	// while (cnt++ < 11)
 	// 	kill(pid, SIGUSR2);
 	// kill(pid, SIGUSR1);
@@ -49,5 +50,5 @@ int	main(int argc, char **argv)
 		return (0);
 	pid = ft_atoi((const char *)argv[1]);
 	sent_signal(pid, argv[2]);
-	return 0;
+	return (0);
 }

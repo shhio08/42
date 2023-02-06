@@ -6,16 +6,18 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:20:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/04 13:34:57 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/04 15:51:00 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Libft/libft.h"
 #include <unistd.h>
 #include <signal.h>
+#include <stdio.h>
 
-void	signal_handler(void)
+void	signal_handler(int sig, struct sigaction sa, void *content)
 {
+	printf("test");
 	return;
 }
 
@@ -30,6 +32,13 @@ int main()
 		exit(1);
 	sa.sa_handler = signal_handler;
 	sa.sa_flags = 0;
-	
+	while (1)
+	{
+		pause();
+		if (sigaction(SIGUSR1, &sa, NULL) == -1)
+			exit(1);
+		if (sigaction(SIGUSR2, &sa, NULL) == -1)
+			exit(1);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:20:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/06 15:46:23 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:46:35 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	signal_handler(int sig, siginfo_t *sa, void *content)
 	static int	bit;
 	static char	c;
 
+	(void)content;
 	if (sig == SIGUSR1)
 		c += 1;
 	bit++;
@@ -38,7 +39,7 @@ void	signal_handler(int sig, siginfo_t *sa, void *content)
 		c = c << 1;
 }
 
-int main()
+int	main(void)
 {
 	struct sigaction	sa;
 

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:19:31 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/07 14:50:43 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:46:52 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int	main(int argc, char **argv)
 {
 	int	pid;
 
-	if (argc < 2)
-		return (0);
 	g_len = ft_strlen(argv[2]);
-	pid = ft_atoi((const char *)argv[1]);
+	if (argc != 3 || !g_len || argv[1][0] == '-')
+		exit(1);
+	pid = ft_atoi(argv[1]);
 	signal(SIGUSR1, recieve_signal);
 	signal(SIGUSR2, recieve_signal);
 	send_signal(pid, argv[2]);

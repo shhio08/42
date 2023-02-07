@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:20:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/07 14:46:35 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:45:47 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ int	main(void)
 		exit(1);
 	sa.sa_sigaction = signal_handler;
 	sa.sa_flags = SA_SIGINFO;
-	while (1)
-	{
 		if (sigaction(SIGUSR1, &sa, NULL) == -1)
 			exit(1);
 		if (sigaction(SIGUSR2, &sa, NULL) == -1)
 			exit(1);
+	while (1)
+	{
 		pause();
 	}
 	return (0);

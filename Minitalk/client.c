@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:19:31 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/08 17:43:04 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:06:28 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	recieve_signal(int sig)
 	if (sig == SIGUSR2)
 	{
 		if (cnt == g_len)
-			ft_putendl_fd("成功だよ〜^^", 1);
+			ft_putendl_fd("Success", 1);
 		else
-			ft_putendl_fd("失敗だよ〜^^;", 1);
+			ft_putendl_fd("Error", 1);
 	}
 }
 

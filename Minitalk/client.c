@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:19:31 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/08 15:22:32 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:43:04 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	send_signal(pid_t pid, char *str)
 	int	cnt;
 	int	flag;
 
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
 		cnt = 8;
 		while (cnt--)
 		{
-			if (str[i++] >> cnt & 1)
+			if (str[i] >> cnt & 1)
 				flag = kill(pid, SIGUSR1);
 			else
 				flag = kill(pid, SIGUSR2);
@@ -61,12 +61,14 @@ void	recieve_signal(int sig)
 
 int	main(int argc, char **argv)
 {
-	int	pid;
+	pid_t	pid;
 
-	g_len = ft_strlen(argv[2]);
-	if (argc != 3 || !g_len || argv[1][0] == '-')
+	if (argc != 3 || !argv[2] || argv[1][0] == '-')
 		exit(1);
+	g_len = ft_strlen(argv[2]);
 	pid = ft_atoi(argv[1]);
+	if (pid < 100 || pid > 99998)
+		exit(1);
 	signal(SIGUSR1, recieve_signal);
 	signal(SIGUSR2, recieve_signal);
 	send_signal(pid, argv[2]);

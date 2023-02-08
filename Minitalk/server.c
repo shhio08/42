@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:20:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/08 15:12:56 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:31:54 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ int	main(void)
 	if (sigaction(SIGUSR2, &sa, NULL) == -1)
 		exit(1);
 	while (1)
-	{
 		pause();
-	}
 	return (0);
 }

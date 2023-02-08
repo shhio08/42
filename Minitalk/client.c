@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:19:31 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/07 15:46:52 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:22:32 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,29 @@ void	send_signal(pid_t pid, char *str)
 {
 	int	i;
 	int	cnt;
+	int	flag;
 
 	i = 0;
 	while (str[i])
 	{
 		cnt = 8;
-		while (--cnt >= 0)
+		while (cnt--)
 		{
-			if (str[i] >> cnt & 1)
-				kill(pid, SIGUSR1);
+			if (str[i++] >> cnt & 1)
+				flag = kill(pid, SIGUSR1);
 			else
-				kill(pid, SIGUSR2);
+				flag = kill(pid, SIGUSR2);
+			if (flag == -1)
+				exit(1);
 			usleep(100);
 		}
-		i++;
 	}
 	while (++cnt < 8)
 	{
-		if (cnt == 5)
-			kill(pid, SIGUSR1);
-		else
-			kill(pid, SIGUSR2);
+		if (kill(pid, SIGUSR2) == -1)
+			exit(1);
 		usleep(100);
 	}
-	return ;
 }
 
 void	recieve_signal(int sig)

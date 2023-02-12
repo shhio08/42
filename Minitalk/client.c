@@ -6,12 +6,12 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:19:31 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/08 18:06:28 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:41:57 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
 #include "Libft/libft.h"
+#include <signal.h>
 
 size_t	g_len;
 

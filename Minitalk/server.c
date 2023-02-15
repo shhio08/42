@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:20:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/08 18:31:54 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:15:48 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	signal_handler(int sig, siginfo_t *sa, void *content)
 {
 	static int	bit;
 	static char	c;
+	int			flag;
 
 	(void)content;
 	if (sig == SIGUSR1)
@@ -27,9 +28,11 @@ void	signal_handler(int sig, siginfo_t *sa, void *content)
 	if (bit == 8)
 	{
 		if (c == 0)
-			kill(sa->si_pid, SIGUSR2);
+			flag = kill(sa->si_pid, SIGUSR2);
 		else
-			kill(sa->si_pid, SIGUSR1);
+			flag = kill(sa->si_pid, SIGUSR1);
+		if (flag == -1)
+			exit(1);
 		ft_putchar_fd(c, 1);
 		bit = 0;
 		c = 0;

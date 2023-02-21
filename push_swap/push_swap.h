@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:45:22 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/18 16:52:20 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:21:58 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,20 @@ typedef struct s_stack
 	int	top;
 }	t_stack;
 
-void	rotate(t_stack **stack);
-void	push(t_stack **m_stack, t_stack **s_stack);
+int	*make_data(int argc, char **argv);
+int	*make_copy(int len, int *data);
+int	*quick_sort(int left, int right, int *src);
+int	sort_check(int *data, int *copy, int len);
+int	dupli_check(int *data, int len);
+int	compress(int num, int *copy, int len);
+int	*compression(int len, int *data);
+t_stack *make_stack(int *data, int len);
+void	error(char *str);
+void	swap(t_stack **stack, int flag);
+void	rotate(t_stack **stack, int flag);
+void	push(t_stack **m_stack, t_stack **s_stack, int flag);
+void	reverse(t_stack **stack, int flag);
+void	ft_sort(t_stack **a, t_stack **b, int len);
+void	three_sort(t_stack **a);
 
 #endif

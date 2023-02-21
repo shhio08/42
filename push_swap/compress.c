@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:55 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/18 17:18:38 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:29:52 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ int	*compression(int len, int *data)
 	if (sort_check(data, copy, len) == -1)
 		error("error2");
 	i = 0;
-	// printf("%d\n", len);
 	while (i < len)
 	{
 		data[i] = compress(data[i], copy, len);

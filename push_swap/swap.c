@@ -6,22 +6,28 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 14:58:57 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/18 17:20:03 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:26:55 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack **stack)
+void	swap(t_stack **stack, int flag)
 {
 	int	tmp;
 
+	while ((*stack)->top != 1)
+		*stack = (*stack)->next;
 	tmp = (*stack)->num;
 	(*stack)->num = (*stack)->next->num;
 	(*stack)->next->num = tmp;
+	if (flag == 1)
+		ft_putstr_fd("sa\n", 1);
+	else if (flag == 2)
+		ft_putstr_fd("sb\n", 1);
 }
 
-void	push(t_stack **m_stack, t_stack **s_stack)
+void	push(t_stack **m_stack, t_stack **s_stack, int flag)
 {
 	t_stack	*tmp;
 
@@ -44,18 +50,34 @@ void	push(t_stack **m_stack, t_stack **s_stack)
 	}
 	*s_stack = *m_stack;
 	*m_stack = tmp;
+	if (flag == 1)
+		ft_putstr_fd("pa\n", 1);
+	else if (flag == 2)
+		ft_putstr_fd("pb\n", 1);
 }
 
-void	rotate(t_stack **stack)
+void	rotate(t_stack **stack, int flag)
 {
+	while ((*stack)->top != 1)
+		*stack = (*stack)->next;
 	(*stack)->top = 0;
 	(*stack)->next->top = 1;
 	*stack = (*stack)->next;
+	if (flag == 1)
+		ft_putstr_fd("ra\n", 1);
+	else if (flag == 2)
+		ft_putstr_fd("rb\n", 1);
 }
 
-void	reverse(t_stack **stack)
+void	reverse(t_stack **stack, int flag)
 {
+	while ((*stack)->top != 1)
+	*stack = (*stack)->next;
 	(*stack)->top = 0;
 	(*stack)->prev->top = 1;
 	*stack = (*stack)->prev;
+	if (flag == 1)
+		ft_putstr_fd("rra\n", 1);
+	else if (flag == 2)
+		ft_putstr_fd("rrb\n", 1);
 }

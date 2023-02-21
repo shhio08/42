@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 14:58:57 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/19 17:26:55 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/21 15:25:43 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	swap(t_stack **stack, int flag)
 
 	while ((*stack)->top != 1)
 		*stack = (*stack)->next;
+	if (!stack || (*stack)->next->top == 1)
+		return;
 	tmp = (*stack)->num;
 	(*stack)->num = (*stack)->next->num;
 	(*stack)->next->num = tmp;
@@ -31,6 +33,8 @@ void	push(t_stack **m_stack, t_stack **s_stack, int flag)
 {
 	t_stack	*tmp;
 
+	if (!m_stack)
+		return;
 	tmp = (*m_stack)->next;
 	(*m_stack)->next->prev = (*m_stack)->prev;
 	(*m_stack)->prev->next = (*m_stack)->next;

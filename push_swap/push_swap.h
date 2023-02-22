@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:45:22 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/19 16:21:58 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:07:46 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ void	swap(t_stack **stack, int flag);
 void	rotate(t_stack **stack, int flag);
 void	push(t_stack **m_stack, t_stack **s_stack, int flag);
 void	reverse(t_stack **stack, int flag);
-void	ft_sort(t_stack **a, t_stack **b, int len);
+void	divide(t_stack **a, t_stack **b, int len);
 void	three_sort(t_stack **a);
+void	others_sort(t_stack **a, t_stack **b, int len);
+void	blocking(t_stack **a, t_stack **b, int len);
 
 #endif

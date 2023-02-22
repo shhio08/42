@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 16:36:43 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/22 15:53:13 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 01:39:35 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,19 @@ int	main(int argc, char **argv)
 	a = make_stack(data, argc - 1);
 	b = NULL;
 	divide(&a, &b, argc - 1);
+	printf("a:%d ", a->num);
+	a = a->next;
+	while (a ->top != 1)
+	{
+		printf("%d ", a->num);
+		a = a->next;
+	}
+	printf("\nb:%d ", b->num);
+	b = b->next;
+	while (b ->top != 1)
+	{
+		printf("%d ", b->num);
+		b = b->next;
+	}
 	return (0);
 }

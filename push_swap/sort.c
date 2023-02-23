@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:11:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 19:06:00 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:08:34 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,21 @@ int	blocking(t_stack **a, t_stack **b, int len)
 	return (init);
 }
 
+void	next_sort(t_stack **a, t_stack **b, int cnt, int flag)
+{
+	if (flag == 1)
+	{
+		while (cnt--)
+			rotate(b, 2);
+	}
+	else if (flag == 2)
+	{
+		while (cnt--)
+			reverse(b, 2);
+	}
+	push(b, a, 1);
+}
+
 void	others_sort(t_stack **a, t_stack **b, int len)
 {
 	int	cnt;
@@ -131,6 +146,8 @@ void	others_sort(t_stack **a, t_stack **b, int len)
 		tmp = *b;
 		while ((*b)->num != len && cnt <= middle && cnt < b_size * 2)
 		{
+			if ((*b)->num == len - 1)
+				next_sort(a, &tmp, cnt ,1);
 			*b = (*b)->next;
 			cnt++;
 		}
@@ -141,15 +158,27 @@ void	others_sort(t_stack **a, t_stack **b, int len)
 		}
 		else
 		{
+			cnt = 0;
 			*b = tmp->prev;
 			while ((*b)->num != len)
 			{
 				reverse(&tmp, 2);
+				if ((*b)->num == len - 1)
+				{
+					push(b, a, 1);
+					*b = (*b)->next;
+				}
 				*b = (*b)->prev;
+				cnt++;
 			}
 			reverse(&tmp, 2);
 		}
 		push(b, a, 1);
+		if ((*a)->num > (*a)->next->num)
+		{
+			swap(a, 1);
+			len--;
+		}
 		cnt = 0;
 		len--;
 	}

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 16:36:43 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 18:54:20 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:02:57 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 	a = make_stack(data, argc - 1);
 	b = NULL;
 	divide(&a, &b, argc - 1);
-	// print_stack(&a, "a:");
-	// print_stack(&b, "b:");
+	print_stack(&a, "a:");
+	print_stack(&b, "b:");
 	return (0);
 }

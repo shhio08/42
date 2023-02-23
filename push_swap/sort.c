@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:11:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 16:23:45 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:52:22 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	five_sort(t_stack **a, t_stack **b, int len)
 		push(b, a, 1);
 }
 
-void	blocking(t_stack **a, t_stack **b, int len)
+int	blocking(t_stack **a, t_stack **b, int len)
 {
 	int	i;
 	int	b_size;
@@ -98,7 +98,7 @@ void	blocking(t_stack **a, t_stack **b, int len)
 			{
 				push(a, b, 2);
 				if ((*a)->next->top == 1)
-					return ;
+					return (init);
 				rotate(b, 2);
 			}
 			else if ((*a)->num <= b_size + init && (*a)->num != size)
@@ -106,12 +106,13 @@ void	blocking(t_stack **a, t_stack **b, int len)
 			else if ((*a)->next->top != 1)
 				rotate(a, 1);
 			if ((*a)->next->top == 1)
-				return ;
+				return (init);
 			i++;
 		}
 		b_size = b_size + (init * 2);
 		len = len - (init * 2);
 	}
+	return (init);
 }
 
 void	others_sort(t_stack **a, t_stack **b, int len)
@@ -119,31 +120,34 @@ void	others_sort(t_stack **a, t_stack **b, int len)
 	int	cnt;
 	int	middle;
 	t_stack	*tmp;
+	int	b_size;
 
-	blocking(a, b, len);
+	b_size = blocking(a, b, len);
 	cnt = 0;
 	len = len - 2;
 	while (len > 0)
 	{
 		middle = len / 2;
 		tmp = *b;
-		while ((*b)->num != len)
+		while ((*b)->num != len && cnt <= middle && cnt < b_size * 2)
 		{
 			*b = (*b)->next;
 			cnt++;
 		}
-		if (cnt != 0 && cnt <= middle)
+		if ((*b)->num == len)
 		{
 			while (cnt--)
 				rotate(&tmp, 2);
 		}
-		else if (cnt-- != 0)
+		else
 		{
-			while (len - cnt)
+			*b = tmp->prev;
+			while ((*b)->num != len)
 			{
 				reverse(&tmp, 2);
-				cnt++;
+				*b = (*b)->prev;
 			}
+			reverse(&tmp, 2);
 		}
 		push(b, a, 1);
 		cnt = 0;

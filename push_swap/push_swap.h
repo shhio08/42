@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:45:22 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 15:41:14 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:48:45 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	reverse(t_stack **stack, int flag);
 void	divide(t_stack **a, t_stack **b, int len);
 void	three_sort(t_stack **a);
 void	others_sort(t_stack **a, t_stack **b, int len);
-void	blocking(t_stack **a, t_stack **b, int len);
+int	blocking(t_stack **a, t_stack **b, int len);
 
 void	print_stack(t_stack **stack, char *str);
 

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:11:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 01:40:53 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:06:38 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,26 +96,28 @@ void	five_sort(t_stack **a, t_stack **b, int len)
 void	blocking(t_stack **a, t_stack **b, int len)
 {
 	int	i;
-	int	cnt;
 	int	b_size;
 	int	init;
+	int	size;
 
-	cnt = 1;
 	b_size = len / 6;
 	init = b_size;
-	while (cnt < 4)
+	size = len - 1;
+	while (1)
 	{
 		i = 0;
 		while (i <= len)
 		{
-			if ((*a)->num <= b_size)
+			if ((*a)->num <= b_size && (*a)->num != size)
 			{
 				push(a, b, 2);
+				if ((*a)->next->top == 1)
+					return ;
 				rotate(b, 2);
 			}
-			else if ((*a)->num <= b_size + init)
+			else if ((*a)->num <= b_size + init && (*a)->num != size)
 				push(a, b, 2);
-			else
+			else if ((*a)->next->top != 1)
 				rotate(a, 1);
 			if ((*a)->next->top == 1)
 				return ;
@@ -123,10 +125,6 @@ void	blocking(t_stack **a, t_stack **b, int len)
 		}
 		b_size = b_size + (init * 2);
 		len = len - (init * 2);
-		cnt++;
-		// printf("len:%d\n", len);
-		// printf("a:%d %d %d %d %d %d\n", (*a)->num, (*a)->next->num, (*a)->next->next->num, (*a)->next->next->next->num, (*a)->next->next->next->next->num, (*a)->next->next->next->next->next->num);
-		// printf("b:%d %d %d %d %d %d\n", (*b)->num, (*b)->next->num, (*b)->next->next->num, (*b)->next->next->next->num, (*b)->next->next->next->next->num, (*b)->next->next->next->next->next->num);
 	}
 }
 
@@ -138,29 +136,32 @@ void	others_sort(t_stack **a, t_stack **b, int len)
 	blocking(a, b, len);
 	cnt = 0;
 	len = len - 2;
-	middle = len / 2;
 	while (len > 0)
 	{
-		printf("len:%d\n", len);
-		printf("b:%d %d %d %d %d %d\n", (*b)->num, (*b)->next->num, (*b)->next->next->num, (*b)->next->next->next->num, (*b)->next->next->next->next->num, (*b)->next->next->next->next->next->num);
+		middle = len / 2;
 		while ((*b)->num != len)
 		{
 			*b = (*b)->next;
 			cnt++;
 		}
-		if (cnt++ <= middle)
+		if (cnt != 0 && cnt <= middle)
 		{
 			while (cnt--)
 				rotate(b, 2);
 		}
-		else
+		else if (cnt-- != 0)
 		{
-			while (cnt--)
+			while (len - cnt)
+			{
 				reverse(b, 2);
+				cnt++;
+			}
 		}
 		push(b, a, 1);
+		cnt = 0;
 		len--;
 	}
+	push(b, a, 1);
 }
 
 void	divide(t_stack **a, t_stack **b, int len)

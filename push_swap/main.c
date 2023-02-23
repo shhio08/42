@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 16:36:43 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 01:39:35 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:05:00 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,21 @@ int	*check_two(char *str, int *argc)
 	return (data);
 }
 
+void	print_stack(t_stack **stack, char *str)
+{
+	if (!*stack)
+		return ;
+	printf("%s", str);
+	printf("%d ", (*stack)->num);
+	*stack = (*stack)->next;
+	while ((*stack)->top != 1)
+	{
+		printf("%d ", (*stack)->num);
+		*stack = (*stack)->next;
+	}
+	printf("\n");
+}
+
 int	main(int argc, char **argv)
 {
 	int	*data;
@@ -53,19 +68,7 @@ int	main(int argc, char **argv)
 	a = make_stack(data, argc - 1);
 	b = NULL;
 	divide(&a, &b, argc - 1);
-	printf("a:%d ", a->num);
-	a = a->next;
-	while (a ->top != 1)
-	{
-		printf("%d ", a->num);
-		a = a->next;
-	}
-	printf("\nb:%d ", b->num);
-	b = b->next;
-	while (b ->top != 1)
-	{
-		printf("%d ", b->num);
-		b = b->next;
-	}
+	// print_stack(&a, "a:");
+	// print_stack(&b, "b:");
 	return (0);
 }

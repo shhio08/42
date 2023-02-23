@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:55 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/22 15:51:56 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:11:38 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,11 @@ int	*compression(int len, int *data)
 	int	i;
 
 	if (dupli_check(data, len) == -1)
-		error("error1");
+		error("");
 	copy = make_copy(len, data);
 	copy = quick_sort(0, len - 1, copy);
 	if (sort_check(data, copy, len) == -1)
-		error("error2");
+		error("");
 	i = 0;
 	while (i < len)
 	{

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:11:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 16:06:38 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:23:45 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,18 @@ void	three_sort(t_stack **a)
 		reverse(a, 1);
 }
 
-// int	find_min(t_stack **stack)
-// {
-// 	int	num;
-
-// 	num = (*stack)->num;
-// 	stack = (*stack)->next;
-// 	while ((*stack)->top != 1)
-// 	{
-// 		if (num > (*stack)->num)
-// 			num = (*stack)->num;
-// 		*stack = (*stack)->next;
-// 	}
-// 	return (num);
-// }
-// printf("%d %d %d %d %d\n", (*a)->num, (*a)->next->num, (*a)->next->next->num, (*a)->next->next->next->num, (*a)->next->next->next->next->num);
-
 void	five_sort(t_stack **a, t_stack **b, int len)
 {
 	int	cnt;
 	int num;
+	t_stack	*tmp;
 
 	num = -1;
 	while (len > 3)
 	{
 		cnt = 0;
 		num++;
+		tmp = *a;
 		while ((*a)->num != num)
 		{
 			cnt++;
@@ -77,12 +63,12 @@ void	five_sort(t_stack **a, t_stack **b, int len)
 			if ((len == 5 && cnt <= 2) || (len == 4 && cnt < 2))
 			{
 				while(cnt--)
-					rotate(a, 1);
+					rotate(&tmp, 1);
 			}
 			else
 			{
 				while(cnt++ < len)
-					reverse(a, 1);
+					reverse(&tmp, 1);
 			}
 			push(a, b, 2);
 		}
@@ -132,6 +118,7 @@ void	others_sort(t_stack **a, t_stack **b, int len)
 {
 	int	cnt;
 	int	middle;
+	t_stack	*tmp;
 
 	blocking(a, b, len);
 	cnt = 0;
@@ -139,6 +126,7 @@ void	others_sort(t_stack **a, t_stack **b, int len)
 	while (len > 0)
 	{
 		middle = len / 2;
+		tmp = *b;
 		while ((*b)->num != len)
 		{
 			*b = (*b)->next;
@@ -147,13 +135,13 @@ void	others_sort(t_stack **a, t_stack **b, int len)
 		if (cnt != 0 && cnt <= middle)
 		{
 			while (cnt--)
-				rotate(b, 2);
+				rotate(&tmp, 2);
 		}
 		else if (cnt-- != 0)
 		{
 			while (len - cnt)
 			{
-				reverse(b, 2);
+				reverse(&tmp, 2);
 				cnt++;
 			}
 		}

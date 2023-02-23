@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 14:58:57 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 15:05:30 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:24:11 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void	push(t_stack **m_stack, t_stack **s_stack, int flag)
 
 void	rotate(t_stack **stack, int flag)
 {
-	while ((*stack)->top != 1)
-		*stack = (*stack)->next;
 	(*stack)->top = 0;
 	(*stack)->next->top = 1;
 	*stack = (*stack)->next;
@@ -89,8 +87,6 @@ void	rotate(t_stack **stack, int flag)
 
 void	reverse(t_stack **stack, int flag)
 {
-	while ((*stack)->top != 1)
-	*stack = (*stack)->next;
 	(*stack)->top = 0;
 	(*stack)->prev->top = 1;
 	*stack = (*stack)->prev;

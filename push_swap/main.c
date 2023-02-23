@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 16:36:43 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 23:02:57 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/24 08:33:31 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	*check_two(char *str, int *argc)
 	len = 0;
 	while(lst[len])
 		len++;
-	// printf("%d\n", len);
 	data = (int *)malloc(sizeof(int) * (len + 1));
 	if (!data)
 		return 0;
@@ -67,8 +66,9 @@ int	main(int argc, char **argv)
 	data = compression(argc - 1, data);
 	a = make_stack(data, argc - 1);
 	b = NULL;
+	// printf("%d, %d, %d\n", a->top, a->next->top, a->next->next->top);
 	divide(&a, &b, argc - 1);
-	print_stack(&a, "a:");
-	print_stack(&b, "b:");
+	// print_stack(&a, "a:");
+	// print_stack(&b, "b:");
 	return (0);
 }

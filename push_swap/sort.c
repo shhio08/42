@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:11:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 23:08:34 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/24 08:46:58 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,29 @@ void	five_sort(t_stack **a, t_stack **b, int len)
 		push(b, a, 1);
 }
 
+int	go_block(t_stack **a, t_stack **b, int border)
+{
+	if ((*a)->num < border)
+	{
+		push(a, b, 2);
+		if ((*a)->next->top == 1)
+			return (-1);
+		rotate(b, 2);
+	}
+	else
+		push(a, b, 2);
+	return (0);
+}
+
+int no_block(t_stack **a)
+{
+	if ((*a)->next->top != 1)
+		rotate(a, 1);
+	else
+		return (-1);
+	return (0);
+}
+
 int	blocking(t_stack **a, t_stack **b, int len)
 {
 	int	i;
@@ -86,28 +109,23 @@ int	blocking(t_stack **a, t_stack **b, int len)
 	int	init;
 	int	size;
 
-	b_size = len / (len / 50 + 4);
+	b_size = len / (len / 30 + 4);
 	init = b_size;
 	size = len - 1;
 	while (1)
 	{
-		i = 0;
-		while (i <= len)
+		i = -1;
+		while (++i < len)
 		{
-			if ((*a)->num <= b_size && (*a)->num != size)
+			// print_stack(a, "a ");
+			// print_stack(b, "b ");
+			if ((*a)->num <= b_size + init && (*a)->num != size)
 			{
-				push(a, b, 2);
-				if ((*a)->next->top == 1)
+				if (go_block(a, b, b_size) != 0)
 					return (init);
-				rotate(b, 2);
 			}
-			else if ((*a)->num <= b_size + init && (*a)->num != size)
-				push(a, b, 2);
-			else if ((*a)->next->top != 1)
-				rotate(a, 1);
-			if ((*a)->next->top == 1)
+			else if (no_block(a) != 0)
 				return (init);
-			i++;
 		}
 		b_size = b_size + (init * 2);
 		len = len - (init * 2);
@@ -115,71 +133,75 @@ int	blocking(t_stack **a, t_stack **b, int len)
 	return (init);
 }
 
-void	next_sort(t_stack **a, t_stack **b, int cnt, int flag)
+int	next_sort(t_stack **a, t_stack **b, int cnt, int *middle)
 {
-	if (flag == 1)
+	while (cnt > 0)
 	{
-		while (cnt--)
-			rotate(b, 2);
-	}
-	else if (flag == 2)
-	{
-		while (cnt--)
-			reverse(b, 2);
+		rotate(b, 2);
+		cnt--;
 	}
 	push(b, a, 1);
+	return (cnt - 1);
+	*middle -= 1;
+}
+
+void	back_check(t_stack **a, t_stack **b, int len)
+{
+	t_stack *tmp;
+
+	tmp = (*b)->prev;
+	while (tmp->num != len)
+	{
+		reverse(b, 2);
+		if (tmp->num == len - 1)
+			push(b, a, 1);
+		tmp = tmp->prev;
+	}
+	reverse(b, 2);
+	return ;
+}
+
+void	front_check(t_stack **a, t_stack **b, int b_size, int len)
+{
+	t_stack *tmp;
+	int		cnt;
+	int		middle;
+
+	tmp = *b;
+	cnt = 0;
+	middle = (len + 1) / 2;
+	while (tmp->num != len && cnt < middle && cnt < b_size * 2)
+	{
+		if (tmp->num == len - 1)
+			cnt = next_sort(a, b, cnt, &middle);
+		tmp = tmp->next;
+		cnt++;
+	}
+	if (tmp->num == len && cnt != 0)
+		while (cnt--)
+			rotate(b, 2);
+	return ;
 }
 
 void	others_sort(t_stack **a, t_stack **b, int len)
 {
-	int	cnt;
-	int	middle;
-	t_stack	*tmp;
 	int	b_size;
 
 	b_size = blocking(a, b, len);
-	cnt = 0;
 	len = len - 2;
 	while (len > 0)
 	{
-		middle = len / 2;
-		tmp = *b;
-		while ((*b)->num != len && cnt <= middle && cnt < b_size * 2)
-		{
-			if ((*b)->num == len - 1)
-				next_sort(a, &tmp, cnt ,1);
-			*b = (*b)->next;
-			cnt++;
-		}
-		if ((*b)->num == len)
-		{
-			while (cnt--)
-				rotate(&tmp, 2);
-		}
-		else
-		{
-			cnt = 0;
-			*b = tmp->prev;
-			while ((*b)->num != len)
-			{
-				reverse(&tmp, 2);
-				if ((*b)->num == len - 1)
-				{
-					push(b, a, 1);
-					*b = (*b)->next;
-				}
-				*b = (*b)->prev;
-				cnt++;
-			}
-			reverse(&tmp, 2);
-		}
+		// print_stack(a, "a ");
+		// print_stack(b, "b ");
+		front_check(a, b, b_size, len);
+		if ((*b)->num != len)
+			back_check(a, b, len);
 		push(b, a, 1);
 		if ((*a)->num > (*a)->next->num)
 		{
 			swap(a, 1);
 			len--;
 		}
-		cnt = 0;
 		len--;
 	}
 	push(b, a, 1);

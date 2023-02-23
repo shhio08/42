@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:11:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 17:57:36 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:02:06 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	blocking(t_stack **a, t_stack **b, int len)
 	int	init;
 	int	size;
 
-	b_size = len / 6;
+	b_size = len / (len / 200 + 4);
 	init = b_size;
 	size = len - 1;
 	while (1)

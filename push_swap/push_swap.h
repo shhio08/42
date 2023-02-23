@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:45:22 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 17:48:45 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:52:30 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_stack
 
 int	*make_data(int argc, char **argv);
 int	*make_copy(int len, int *data);
-int	*quick_sort(int left, int right, int *src);
+void	quick_sort(int left, int right, int *src);
 int	sort_check(int *data, int *copy, int len);
 int	dupli_check(int *data, int len);
 int	compress(int num, int *copy, int len);

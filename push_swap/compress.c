@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:55 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 13:11:38 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:54:02 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,34 @@ int	*make_copy(int len, int *data)
 	return (copy);
 }
 
-int	*quick_sort(int left, int right, int *src)
+void	quick_sort(int left, int right, int *src)
 {
 	int	pivot;
 	int tmp;
+	int start;
 	int	end;
 
 	if (left >= right)
-		return (src);
+		return ;
+	start = left;
 	end = right;
-	pivot = src[left];
+	pivot = src[(left + right) / 2];
 	while (left < right)
 	{
 		while (src[left] < pivot)
 			left++;
-		while (left < right && src[right] > pivot)
+		while (src[right] > pivot)
 			right--;
 		if (left >= right)
-			break;
+			break ;
 		tmp = src[left];
 		src[left] = src[right];
 		src[right] = tmp;
 	}
-	quick_sort(0, left, src);
+	// printf("l%d r%d\n", left, right);
+	quick_sort(start, left, src);
 	quick_sort(left + 1, end, src);
-	return (src);
+	return ;
 }
 
 int	sort_check(int *data, int *copy, int len)
@@ -126,7 +129,7 @@ int	*compression(int len, int *data)
 	if (dupli_check(data, len) == -1)
 		error("");
 	copy = make_copy(len, data);
-	copy = quick_sort(0, len - 1, copy);
+	quick_sort(0, len - 1, copy);
 	if (sort_check(data, copy, len) == -1)
 		error("");
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:11:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/25 15:28:39 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:37:31 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	blocking(t_stack **a, t_stack **b, int len)
 	int	flag;
 
 	init = (t_init *)malloc(sizeof(t_init));
-	init->block = len / (len / 50 + 8);
+	init->block = len / (len / 50 + 6);
 	init->range = init->block;
 	init->max = len - 1;
 	while (1)

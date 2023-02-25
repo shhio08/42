@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:45:22 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 18:52:30 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:25:28 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_stack *make_stack(int *data, int len);
 void	error(char *str);
 void	swap(t_stack **stack, int flag);
 void	rotate(t_stack **stack, int flag);
+void	rr(t_stack **a, t_stack **b);
 void	push(t_stack **m_stack, t_stack **s_stack, int flag);
 void	reverse(t_stack **stack, int flag);
 void	divide(t_stack **a, t_stack **b, int len);

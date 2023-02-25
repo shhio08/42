@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 14:58:57 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/24 04:13:21 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:25:11 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,13 @@ void	rotate(t_stack **stack, int flag)
 		ft_putstr_fd("ra\n", 1);
 	else if (flag == 2)
 		ft_putstr_fd("rb\n", 1);
+}
+
+void	rr(t_stack **a, t_stack **b)
+{
+	rotate(a, 0);
+	rotate(b, 3);
+	ft_putstr_fd("rr\n", 1);
 }
 
 void	reverse(t_stack **stack, int flag)

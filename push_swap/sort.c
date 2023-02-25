@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:11:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/24 08:46:58 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/25 01:51:23 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,28 +79,46 @@ void	five_sort(t_stack **a, t_stack **b, int len)
 		push(b, a, 1);
 }
 
-int	go_block(t_stack **a, t_stack **b, int border)
+int	block_judge(t_stack **a, t_stack **b, int b_size, int init)
 {
-	if ((*a)->num < border)
+	if ((*a)->num <= b_size)
 	{
 		push(a, b, 2);
 		if ((*a)->next->top == 1)
 			return (-1);
 		rotate(b, 2);
 	}
-	else
+	else if((*a)->num <= b_size + init)
 		push(a, b, 2);
-	return (0);
-}
-
-int no_block(t_stack **a)
-{
-	if ((*a)->next->top != 1)
+	else if ((*a)->next->top != 1)
 		rotate(a, 1);
 	else
 		return (-1);
 	return (0);
 }
+
+// int	go_block(t_stack **a, t_stack **b, int border)
+// {
+// 	if ((*a)->num < border)
+// 	{
+// 		push(a, b, 2);
+// 		if ((*a)->next->top == 1)
+// 			return (-1);
+// 		rotate(b, 2);
+// 	}
+// 	else
+// 		push(a, b, 2);
+// 	return (0);
+// }
+
+// int no_block(t_stack **a)
+// {
+// 	if ((*a)->next->top != 1)
+// 		rotate(a, 1);
+// 	else
+// 		return (-1);
+// 	return (0);
+// }
 
 int	blocking(t_stack **a, t_stack **b, int len)
 {
@@ -109,7 +127,7 @@ int	blocking(t_stack **a, t_stack **b, int len)
 	int	init;
 	int	size;
 
-	b_size = len / (len / 30 + 4);
+	b_size = len / (len / 50 + 4);
 	init = b_size;
 	size = len - 1;
 	while (1)
@@ -119,13 +137,25 @@ int	blocking(t_stack **a, t_stack **b, int len)
 		{
 			// print_stack(a, "a ");
 			// print_stack(b, "b ");
-			if ((*a)->num <= b_size + init && (*a)->num != size)
+			if ((*a)->num != size)
 			{
-				if (go_block(a, b, b_size) != 0)
+				if (block_judge(a, b, b_size, init) != 0)
 					return (init);
 			}
-			else if (no_block(a) != 0)
+			// else if ((*a)->next->top != 1)
+			// 	rotate(a, 1);
+			else if ((*a)->next->top != 1)
+				rotate(a, 1);
+			else
 				return (init);
+				// return (init);
+			// if ((*a)->num <= b_size + init && (*a)->num != size)
+			// {
+			// 	if (go_block(a, b, b_size) != 0)
+			// 		return (init);
+			// }
+			// else if (no_block(a) != 0)
+			// 	return (init);
 		}
 		b_size = b_size + (init * 2);
 		len = len - (init * 2);

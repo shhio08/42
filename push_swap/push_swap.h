@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:45:22 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/24 16:25:28 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:12:13 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ typedef struct s_stack
 	struct s_stack *prev;
 	int	top;
 }	t_stack;
+
+typedef	struct s_init
+{
+	int	max;
+	int	range;
+	int block;
+}	t_init;
+
 
 int	*make_data(int argc, char **argv);
 int	*make_copy(int len, int *data);

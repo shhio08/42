@@ -6,49 +6,17 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:55 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/26 11:20:25 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:06:05 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*make_data(int argc, char **argv)
-{
-	int	*data;
-	int	i;
-
-	data = (int *)malloc(sizeof(int) * argc);
-	if (!data)
-		return 0;
-	i = 1;
-	while (i < argc)
-	{
-		data[i - 1] = ft_atoi(argv[i]);
-		i++;
-	}
-	data[i] = 0;
-	return (data);
-}
-
-int	*make_copy(int len, int *data)
-{
-	int	*copy;
-	int	i;
-
-	copy = (int *)malloc(sizeof(int) * len);
-	if (!copy)
-		return (0);
-	i = -1;
-	while(i++ < len)
-		copy[i] = data[i];
-	return (copy);
-}
-
-void	quick_sort(int left, int right, int *src)
+static void	quick_sort(int left, int right, int *src)
 {
 	int	pivot;
-	int tmp;
-	int start;
+	int	tmp;
+	int	start;
 	int	end;
 
 	if (left >= right)
@@ -73,10 +41,10 @@ void	quick_sort(int left, int right, int *src)
 	return ;
 }
 
-int	sort_check(int *data, int *copy, int len)
+static int	sort_check(int *data, int *copy, int len)
 {
 	int	flag;
-	int i;
+	int	i;
 
 	flag = 0;
 	i = len;
@@ -90,16 +58,16 @@ int	sort_check(int *data, int *copy, int len)
 	return (0);
 }
 
-int	dupli_check(int *data, int len)
+static int	dupli_check(int *data, int len)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while(i < len)
+	while (i < len)
 	{
 		j = i + 1;
-		while(j < len)
+		while (j < len)
 		{
 			if (data[i] == data[j])
 				return (-1);
@@ -110,7 +78,7 @@ int	dupli_check(int *data, int len)
 	return (0);
 }
 
-int	compress(int num, int *copy, int len)
+static int	compress(int num, int *copy, int len)
 {
 	int	cnt;
 
@@ -122,11 +90,11 @@ int	compress(int num, int *copy, int len)
 
 int	*compression(int len, int *data)
 {
-	int *copy;
+	int	*copy;
 	int	i;
 
 	if (dupli_check(data, len) == -1)
-		error("error\n");
+		error("Error\n");
 	copy = make_copy(len, data);
 	quick_sort(0, len - 1, copy);
 	if (sort_check(data, copy, len) == -1)

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:45:22 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/26 10:29:30 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:23:00 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,39 @@
 
 typedef struct s_stack
 {
-	int	num;
-	struct s_stack *next;
-	struct s_stack *prev;
-	int	top;
+	int				num;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+	int				top;
 }	t_stack;
 
-typedef	struct s_init
+typedef struct s_init
 {
 	int	max;
 	int	range;
-	int block;
+	int	block;
 }	t_init;
 
-
-int	*make_data(int argc, char **argv);
-int	*make_copy(int len, int *data);
-void	quick_sort(int left, int right, int *src);
-int	sort_check(int *data, int *copy, int len);
-int	dupli_check(int *data, int len);
-int	compress(int num, int *copy, int len);
-int	*compression(int len, int *data);
-t_stack *make_stack(int *data, int len);
+int		*check_two(char *str, int *argc);
+int		*make_data(int argc, char **argv);
+int		*make_copy(int len, int *data);
+t_stack	*make_stack(int *data, int len);
+int		*compression(int len, int *data);
+void	divide(t_stack **a, t_stack **b, int len);
+void	three_sort(t_stack **a);
+void	five_sort(t_stack **a, t_stack **b, int len);
+void	others_sort(t_stack **a, t_stack **b, int len);
+void	front_check(t_stack **a, t_stack **b, int block, int len);
+void	back_check(t_stack **a, t_stack **b, int len);
+int		swap_check(t_stack **a);
 void	error(char *str);
+void	stack_free(t_stack **stack);
+char	**ft_free(char **dest);
+int		ps_atoi(const char *str);
 void	swap(t_stack **stack, int flag);
 void	rotate(t_stack **stack, int flag);
 void	rr(t_stack **a, t_stack **b);
-void	push(t_stack **m_stack, t_stack **s_stack, int flag);
 void	reverse(t_stack **stack, int flag);
-void	divide(t_stack **a, t_stack **b, int len);
-void	three_sort(t_stack **a);
-void	others_sort(t_stack **a, t_stack **b, int len);
-int	blocking(t_stack **a, t_stack **b, int len);
-
-void	print_stack(t_stack **stack, char *str);
+void	push(t_stack **m_stack, t_stack **s_stack, int flag);
 
 #endif

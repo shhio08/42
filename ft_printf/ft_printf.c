@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:05:29 by stakimot          #+#    #+#             */
-/*   Updated: 2022/11/10 19:09:11 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 12:41:49 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_printf(const char *format, ...)
 	while (format[cnt])
 	{
 		if (format[cnt] == '%')
-			byte = check_type(format[++cnt], &lst);
+			byte = check_type(format[++cnt], lst);
 		else
 			byte = write(1, &format[cnt], 1);
 		if (byte == -1)
@@ -59,4 +59,10 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(lst);
 	return (num);
+}
+
+int main(int argc, char const *argv[])
+{
+	ft_printf("% %\n");
+	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:17:56 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/26 18:09:39 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:16:21 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	*make_data(int argc, char **argv)
 		data[i - 1] = ps_atoi(argv[i]);
 		i++;
 	}
-	printf("%d %d %d\n", data[0], data[1], data[2]);
 	data[i] = 0;
 	return (data);
 }

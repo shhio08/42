@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:19:10 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/26 18:10:27 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:19:20 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,21 @@ char	**ft_free(char **dest)
 	return (NULL);
 }
 
-static int	check_long(long num, char c, int minus)
+static void	check_long(long num, char c, int minus)
 {
 	int	flag;
 
 	flag = 0;
-	if (LONG_MAX / 10 < num && c && !minus)
+	if (INT_MAX / 10 < num && c && minus == 1)
 		flag = 1;
-	if (LONG_MAX / 10 == num && LONG_MAX % 10 < c - '0' && !minus)
+	else if (INT_MAX / 10 == num && INT_MAX % 10 < c - '0' && minus == 1)
 		flag = 1;
-	if (LONG_MIN / 10 > -num && c && minus)
+	else if (INT_MIN / 10 > -num && c && minus == -1)
 		flag = 1;
-	if (LONG_MIN / 10 == -num && LONG_MIN % 10 > -(c - '0') && minus)
+	else if (INT_MIN / 10 == -num && INT_MIN % 10 > -(c - '0') && minus == -1)
 		flag = 1;
 	if (flag == 1)
 		error("Error\n");
-	return (0);
 }
 
 int	ps_atoi(const char *str)

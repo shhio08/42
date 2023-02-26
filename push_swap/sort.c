@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:11:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/26 10:58:16 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 11:14:35 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	five_sort(t_stack **a, t_stack **b, int len)
 	three_sort(a);
 	while(num-- >= 0)
 		push(b, a, 1);
-	// print_stack(a, "a ");
 }
 
 int	block_judge(t_stack **a, t_stack **b, t_init *init)
@@ -126,12 +125,9 @@ int	blocking(t_stack **a, t_stack **b, int len)
 	init->max = len - 1;
 	while (1)
 	{
-		// printf("----------------------\n");
 		i = -1;
 		while (++i < len)
 		{
-			// print_stack(a, "a ");
-			// print_stack(b, "b ");
 			flag = block_judge(a, b, init);
 			if (flag == -1)
 			{
@@ -203,11 +199,8 @@ void	front_push(t_stack **a, t_stack **b, int cnt, int len)
 	int		flag;
 
 	flag = 0;
-	// printf("cnt %d\n", cnt);
 	while (cnt-- > 0)
 	{
-		// print_stack(a, "a ");
-		// print_stack(b, "b ");
 		if ((*b)->num == len - 1)
 		{
 			push(b, a, 1);
@@ -227,12 +220,10 @@ void	front_check(t_stack **a, t_stack **b, int block, int len)
 {
 	t_stack *tmp;
 	int		cnt;
-	int		flag;
 	int		middle;
 
 	tmp = *b;
 	cnt = 0;
-	flag = 0;
 	middle = (len + 1) / 2;
 	while (tmp->num != len && cnt < middle && cnt < block * 2)
 	{
@@ -250,11 +241,8 @@ void	others_sort(t_stack **a, t_stack **b, int len)
 
 	block = blocking(a, b, len);
 	len = len - 2;
-	// printf("=============================\n\n\n");
 	while (len > 0)
 	{
-	// 	print_stack(a, "a ");
-	// 	print_stack(b, "b ");
 		front_check(a, b, block, len);
 		if ((*b)->num != len)
 			back_check(a, b, len);

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:55 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/26 10:19:28 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 11:20:25 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	quick_sort(int left, int right, int *src)
 		src[left] = src[right];
 		src[right] = tmp;
 	}
-	// printf("l%d r%d\n", left, right);
 	quick_sort(start, left, src);
 	quick_sort(left + 1, end, src);
 	return ;
@@ -127,11 +126,11 @@ int	*compression(int len, int *data)
 	int	i;
 
 	if (dupli_check(data, len) == -1)
-		error("");
+		error("error\n");
 	copy = make_copy(len, data);
 	quick_sort(0, len - 1, copy);
 	if (sort_check(data, copy, len) == -1)
-		error("");
+		exit(0);
 	i = 0;
 	while (i < len)
 	{

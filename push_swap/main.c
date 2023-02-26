@@ -6,11 +6,36 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 16:36:43 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/26 11:00:09 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 11:47:14 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+char	**ft_free(char **dest)
+{
+	size_t	cnt;
+
+	cnt = 0;
+	while (dest[cnt])
+		free(dest[cnt++]);
+	free(dest);
+	return (NULL);
+}
+
+void	stack_free(t_stack **stack)
+{
+	t_stack	*tmp;
+
+	*stack = (*stack)->next;
+	while ((*stack)->top != 1)
+	{
+		tmp = (*stack);
+		free(*stack);
+		*stack = tmp->next;
+	}
+	free(*stack);
+}
 
 int	*check_two(char *str, int *argc)
 {
@@ -23,9 +48,9 @@ int	*check_two(char *str, int *argc)
 	len = 0;
 	while(lst[len])
 		len++;
-	data = (int *)malloc(sizeof(int) * (len + 1));
+	data = (int *)malloc(sizeof(int) * (len));
 	if (!data)
-		return 0;
+		return (0);
 	i = 0;
 	while (i < len)
 	{
@@ -33,22 +58,8 @@ int	*check_two(char *str, int *argc)
 		i++;
 	}
 	*argc = len + 1;
+	ft_free(lst);
 	return (data);
-}
-
-void	print_stack(t_stack **stack, char *str)
-{
-	if (!*stack)
-		return ;
-	printf("%s", str);
-	printf("%d ", (*stack)->num);
-	*stack = (*stack)->next;
-	while ((*stack)->top != 1)
-	{
-		printf("%d ", (*stack)->num);
-		*stack = (*stack)->next;
-	}
-	printf("\n");
 }
 
 int	main(int argc, char **argv)
@@ -67,10 +78,11 @@ int	main(int argc, char **argv)
 	a = make_stack(data, argc - 1);
 	b = NULL;
 	divide(&a, &b, argc - 1);
+	stack_free(&a);
 	return (0);
 }
 
-// 	__attribute__((destructor)) static void destructor()
-// {
-//     system("leaks push_swap");
-// }
+	__attribute__((destructor)) static void destructor()
+{
+    system("leaks -q push_swap");
+}

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:17:56 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/18 17:18:24 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 10:16:03 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ t_stack *make_stack(int *data, int len)
 	}
 	a->next = tmp;
 	tmp->prev = a;
+	free(data);
+	data = NULL;
 	return (tmp);
 }

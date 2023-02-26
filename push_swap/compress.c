@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:55 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/23 18:54:02 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 10:19:28 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,5 +138,7 @@ int	*compression(int len, int *data)
 		data[i] = compress(data[i], copy, len);
 		i++;
 	}
+	free(copy);
+	copy = NULL;
 	return (data);
 }

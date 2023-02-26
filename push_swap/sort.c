@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:11:37 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/25 15:37:31 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/02/26 10:58:16 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,13 +134,17 @@ int	blocking(t_stack **a, t_stack **b, int len)
 			// print_stack(b, "b ");
 			flag = block_judge(a, b, init);
 			if (flag == -1)
+			{
+				free(init);
 				return (init->range);
+			}
 			else if (flag == 1)
 				i++;
 		}
 		init->block += (init->range * 2);
 		len = len - (init->range * 2);
 	}
+	free(init);
 	return (init->range);
 }
 

@@ -5,37 +5,31 @@
 #                                                     +:+ +:+         +:+      #
 #    By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/11 16:41:32 by stakimot          #+#    #+#              #
-#    Updated: 2023/02/28 10:38:37 by stakimot         ###   ########.fr        #
+#    Created: 2023/02/28 20:17:53 by stakimot          #+#    #+#              #
+#    Updated: 2023/02/28 20:24:38 by stakimot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	push_swap
+NAME	=	gnl.a
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -rf
 AR		=	ar rcs
 
-LIBFT	=	libft/libft.a
-
-SRC		=	main.c stack.c compress.c sort.c u_five.c check.c utils.c swap.c rotate.c reverse.c push.c
-OBJ		= 	$(SRC:.c=.o)
+SRC		=	get_next_line.c get_next_line_utils.c
+OBJ		=	$(SRC:.c=.o)
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	make -C libft
-	$(CC) $(CFLAGS) $^ $(LIBFT) -o $@
+	$(AR) $@ $^
 
 clean:
-	make clean -C libft
 	$(RM) $(OBJ)
 
-fclean:
+fclean:	clean
 	$(RM) $(NAME)
-	make clean -C libft
-	$(RM) $(OBJ)
 
-re: fclean all
+re:	fclean all
 
-.PHONY: all clean fclean re
+.PHONY:	all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/28 21:03:17 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/05 00:20:31 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,15 @@ int	check_name(char *file_name)
 	return (0);
 }
 
-void	count_row(t_map_data **map_data, int fd)
+void	count_row(t_map_data **map_data, char *file_name)
 {
 	char	*str;
 	int		cnt;
+	int		fd;
 
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		error("Error open");
 	cnt = 0;
 	while (1)
 	{
@@ -46,36 +50,39 @@ void	count_row(t_map_data **map_data, int fd)
 		cnt++;
 		free(str);
 	}
+	close(fd);
 	(*map_data)->row = cnt;
 }
 
-// void	read_line(t_map_data **map_data, int fd)
-// {
-// 	char	*line;
-// 	int		cnt;
+// void	add_next_line()
 
-// 	cnt = 0;
-// 	(*map_data)->map = (char **)malloc(sizeof(char) * (*map_data)->row);
-// 	if (!(*map_data)->map)
-// 		error("Error map malloc");
-// 	while (cnt < (*map_data)->row)
-// 	{
-// 		line = get_next_line(fd);
-// 		add_next_line((*map_data)->map[cnt]);
-// 		cnt++;
-// 	}
-// }
-
-void	make_map(t_map_data **map_data, char *file_name)
+void	read_line(t_map_data **map_data, char *file_name)
 {
 	// char	*line;
-	int	fd;
+	int		cnt;
+	int		fd;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		error("Error open");
-	count_row(map_data, fd);
-	// read_line(map_data, fd);
+	cnt = 0;
+	(*map_data)->map = (char **)malloc(sizeof(char) * (*map_data)->row);
+	if (!(*map_data)->map)
+		error("Error map malloc");
+	while (cnt < (*map_data)->row)
+	{
+		((*map_data)->map[cnt]) = get_next_line(fd);
+		printf("%s", (*map_data)->map[cnt]);
+		// add_next_line((*map_data)->map[cnt]);
+		// free(line);
+		cnt++;
+	}
+}
+
+void	make_map(t_map_data **map_data, char *file_name)
+{
+	count_row(map_data, file_name);
+	read_line(map_data, file_name);
 }
 
 t_map_data	*read_map(char *file_name)
@@ -96,5 +103,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	map_data = read_map(argv[1]);
+	printf("row = %d\n", map_data->row);
+	// printf("%s", map_data->map[0]);
 	return (0);
 }

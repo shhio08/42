@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:18:56 by stakimot          #+#    #+#             */
-/*   Updated: 2023/02/28 20:30:33 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/04 22:41:44 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,9 @@ size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
+t_map_data	*read_map(char *file_name);
+void	make_map(t_map_data **map_data, char *file_name);
+void	count_row(t_map_data **map_data, char *file_name);
+int	check_name(char *file_name);
 
 #endif

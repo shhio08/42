@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/05 19:57:13 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:48:49 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,24 +168,6 @@ void	element_check(t_map_data **map_data)
 	(*map_data)->collectible = collectible;
 }
 
-// char	**make_copy(t_map_data **map_data)
-// {
-// 	char	**copy;
-// 	int		cnt;
-
-// 	cnt = 0;
-// 	copy = (char **)malloc(sizeof(char *) * (*map_data)->row + 1);
-// 	if (!copy)
-// 		error("Error malloc");
-// 	while (cnt < (*map_data)->row)
-// 	{
-// 		copy[cnt] = ft_strdup((*map_data)->map[cnt]);
-// 		cnt++;
-// 	}
-// 	copy[cnt] = NULL;
-// 	return (copy);
-// }
-
 void	mark_map(t_map_data **map_data, char **copy, int y, int x)
 {
 	if (y < 1 || x < 1)
@@ -206,7 +188,6 @@ void	mark_map(t_map_data **map_data, char **copy, int y, int x)
 		mark_map(map_data, copy, y, x - 1);
 		mark_map(map_data, copy, y, x + 1);
 	}
-	return ;
 }
 
 void	playable_check(t_map_data **map_data)
@@ -252,12 +233,12 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	map_data = read_map(argv[1]);
-
+	mlx_setup();
 	printf("row = %d\n", map_data->row);
-	printf("%s", map_data->map[0]);
-	printf("%s", map_data->map[1]);
-	printf("%s", map_data->map[2]);
-	printf("%s", map_data->map[3]);
-	printf("x=%d  y=%d", map_data->x, map_data->y);
+	// printf("%s", map_data->map[0]);
+	// printf("%s", map_data->map[1]);
+	// printf("%s", map_data->map[2]);
+	// printf("%s", map_data->map[3]);
+	// printf("x=%d  y=%d", map_data->x, map_data->y);
 	return (0);
 }

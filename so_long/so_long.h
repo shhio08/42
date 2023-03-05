@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:18:56 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/05 19:45:58 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:48:16 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "get_next_line/get_next_line.h"
+#include "minilibx-linux/mlx.h"
 
 typedef struct s_map_data
 {
@@ -41,5 +42,7 @@ t_map_data	*read_map(char *file_name);
 void	make_map(t_map_data **map_data, char *file_name);
 void	count_row(t_map_data **map_data, char *file_name);
 int	check_name(char *file_name);
+
+void	mlx_setup();
 
 #endif

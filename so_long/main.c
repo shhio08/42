@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/05 03:03:51 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:57:13 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,42 +114,121 @@ void	top_bottom_check(char *str, int col)
 	}
 }
 
-void	middle_check(char *str, int col, int *pflg, int *eflg)
+int	middle_check(t_map_data **map_data, int row, int *player, int *exit)
 {
-	int	cnt;
+	int	col;
+	int	collectible;
+	char	*str;
 
-	cnt = 0;
-	while (cnt < col)
+	col = 0;
+	collectible = 0;
+	str = (*map_data)->map[row];
+	while (col < (*map_data)->col)
 	{
-		if (str[cnt] == 'P')
-			*pflg += 1;
-		else if (str[cnt] == 'E')
-			*eflg += 1;
-		else if (str[cnt] != '1' && str[cnt] != 'C' && str[cnt] != '0')
+		if ((col == 0 && str[col] != '1')||(col == (*map_data)->col - 1 && str[col] != '1'))
+			error("Error element4");
+		if (str[col] == 'P')
+		{
+			*player += 1;
+			(*map_data)->y = row;
+			(*map_data)->x = col;
+		}
+		else if (str[col] == 'E')
+			*exit += 1;
+		else if (str[col] == 'C')
+			collectible += 1;
+		else if (str[col] != '1' && str[col] != '0')
 			error("Error element2");
-		cnt++;
+		col++;
 	}
+	return (collectible);
 }
 
 void	element_check(t_map_data **map_data)
 {
 	int	row;
-	int	pflg;
-	int	eflg;
+	int	player;
+	int	exit;
+	int	collectible;
 
 	row = 0;
-	pflg = 0;
-	eflg = 0;
+	player = 0;
+	exit = 0;
+	collectible = 0;
 	while (row < (*map_data)->row)
 	{
 		if (row == 0 || row == (*map_data)->row - 1)
 			top_bottom_check((*map_data)->map[row], (*map_data)->col);
 		else
-			middle_check((*map_data)->map[row], (*map_data)->col, &pflg, &eflg);
+			collectible += middle_check(map_data, row, &player, &exit);
 		row++;
 	}
-	if (pflg != 1 || eflg != 1)
+	if (player != 1 || exit != 1 || collectible < 1)
 		error("Error element3");
+	(*map_data)->collectible = collectible;
+}
+
+// char	**make_copy(t_map_data **map_data)
+// {
+// 	char	**copy;
+// 	int		cnt;
+
+// 	cnt = 0;
+// 	copy = (char **)malloc(sizeof(char *) * (*map_data)->row + 1);
+// 	if (!copy)
+// 		error("Error malloc");
+// 	while (cnt < (*map_data)->row)
+// 	{
+// 		copy[cnt] = ft_strdup((*map_data)->map[cnt]);
+// 		cnt++;
+// 	}
+// 	copy[cnt] = NULL;
+// 	return (copy);
+// }
+
+void	mark_map(t_map_data **map_data, char **copy, int y, int x)
+{
+	if (y < 1 || x < 1)
+		return ;
+	if (copy[y][x] == 'E')
+	{
+		copy[y][x] = 'T';
+		(*map_data)->check_exit -= 1;
+		return ;
+	}
+	if (copy[y][x] == 'P' || copy[y][x] == '0' || copy[y][x] == 'C')
+	{
+		if (copy[y][x] == 'C')
+			(*map_data)->check_collect -= 1;
+		copy[y][x] = 'T';
+		mark_map(map_data, copy, y - 1, x);
+		mark_map(map_data, copy, y + 1, x);
+		mark_map(map_data, copy, y, x - 1);
+		mark_map(map_data, copy, y, x + 1);
+	}
+	return ;
+}
+
+void	playable_check(t_map_data **map_data)
+{
+	char	**copy;
+	int		cnt;
+
+	cnt = 0;
+	copy = (char **)malloc(sizeof(char *) * (*map_data)->row + 1);
+	if (!copy)
+		error("Error malloc");
+	while (cnt < (*map_data)->row)
+	{
+		copy[cnt] = ft_strdup((*map_data)->map[cnt]);
+		cnt++;
+	}
+	copy[cnt] = NULL;
+	(*map_data)->check_exit = 1;
+	(*map_data)->check_collect = (*map_data)->collectible;
+	mark_map(map_data, copy, (*map_data)->y, (*map_data)->x);
+	if ((*map_data)->check_collect != 0 || (*map_data)->check_exit != 0)
+	error("Error not playable");
 }
 
 t_map_data	*read_map(char *file_name)
@@ -161,6 +240,7 @@ t_map_data	*read_map(char *file_name)
 		error("Error file name");
 	make_map(&map_data, file_name);
 	element_check(&map_data);
+	playable_check(&map_data);
 
 	return (map_data);
 }
@@ -178,5 +258,6 @@ int	main(int argc, char **argv)
 	printf("%s", map_data->map[1]);
 	printf("%s", map_data->map[2]);
 	printf("%s", map_data->map[3]);
+	printf("x=%d  y=%d", map_data->x, map_data->y);
 	return (0);
 }

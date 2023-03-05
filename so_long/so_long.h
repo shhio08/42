@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:18:56 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/05 01:57:31 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:45:58 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ typedef struct s_map_data
 	int		row;
 	int		x;
 	int		y;
+	int		collectible;
+	int		check_collect;
+	int		check_exit;
 }	t_map_data;
 
 void	error(char *str);

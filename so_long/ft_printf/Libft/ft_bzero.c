@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:19:41 by stakimot         ###   ########.fr       */
+/*   Created: 2022/10/23 13:36:06 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/23 13:36:35 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_bzero(void *s, size_t n)
 {
-	t_map_data	*map_data;
-	t_data		*data;
-
-	if (argc != 2)
-		return (0);
-	map_data = read_map(argv[1]);
-	data = NULL;
-	mlx_setup(data, map_data);
-	return (0);
+	ft_memset(s, '\0', n);
 }
-
-// 	__attribute__((destructor)) static void destructor()
-// {
-//     system("leaks -q so_long");
-// }

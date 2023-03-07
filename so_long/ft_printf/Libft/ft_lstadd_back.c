@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:19:41 by stakimot         ###   ########.fr       */
+/*   Created: 2022/10/28 15:16:29 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/29 14:42:47 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_map_data	*map_data;
-	t_data		*data;
+	t_list	*tmp;
 
-	if (argc != 2)
-		return (0);
-	map_data = read_map(argv[1]);
-	data = NULL;
-	mlx_setup(data, map_data);
-	return (0);
+	if (!new || !lst)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	tmp = ft_lstlast(*lst);
+	tmp->next = new;
 }
-
-// 	__attribute__((destructor)) static void destructor()
-// {
-//     system("leaks -q so_long");
-// }

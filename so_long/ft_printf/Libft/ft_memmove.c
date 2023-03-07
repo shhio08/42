@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:19:41 by stakimot         ###   ########.fr       */
+/*   Created: 2022/10/23 13:37:16 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/29 14:46:27 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	t_map_data	*map_data;
-	t_data		*data;
+	char		*tmp_dest;
+	const char	*tmp_src;
 
-	if (argc != 2)
-		return (0);
-	map_data = read_map(argv[1]);
-	data = NULL;
-	mlx_setup(data, map_data);
-	return (0);
+	tmp_dest = (char *)dest;
+	tmp_src = (const char *)src;
+	if (tmp_dest > tmp_src)
+	{
+		while (n > 0)
+		{
+			tmp_dest[n - 1] = tmp_src[n - 1];
+			n--;
+		}
+	}
+	else
+		ft_memcpy(dest, src, n);
+	return (dest);
 }
-
-// 	__attribute__((destructor)) static void destructor()
-// {
-//     system("leaks -q so_long");
-// }

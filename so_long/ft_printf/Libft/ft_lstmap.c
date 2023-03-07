@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:19:41 by stakimot         ###   ########.fr       */
+/*   Created: 2022/10/28 15:43:22 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/29 14:44:31 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_map_data	*map_data;
-	t_data		*data;
+	t_list	*dest;
+	t_list	*tmp;
 
-	if (argc != 2)
-		return (0);
-	map_data = read_map(argv[1]);
-	data = NULL;
-	mlx_setup(data, map_data);
-	return (0);
+	dest = NULL;
+	if (!f || !del)
+		return (NULL);
+	while (lst)
+	{
+		tmp = ft_lstnew(f(lst->content));
+		if (!tmp)
+		{
+			ft_lstclear(&dest, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&dest, tmp);
+		lst = lst->next;
+	}
+	return (dest);
 }
-
-// 	__attribute__((destructor)) static void destructor()
-// {
-//     system("leaks -q so_long");
-// }

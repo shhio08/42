@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:19:41 by stakimot         ###   ########.fr       */
+/*   Created: 2022/10/10 16:45:51 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/30 11:18:29 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_map_data	*map_data;
-	t_data		*data;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			cnt;
 
-	if (argc != 2)
-		return (0);
-	map_data = read_map(argv[1]);
-	data = NULL;
-	mlx_setup(data, map_data);
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	cnt = 0;
+	while (cnt < n)
+	{
+		if (str1[cnt] != str2[cnt])
+			return (str1[cnt] - str2[cnt]);
+			cnt++;
+	}
 	return (0);
 }
-
-// 	__attribute__((destructor)) static void destructor()
-// {
-//     system("leaks -q so_long");
-// }

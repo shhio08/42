@@ -5,38 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/27 12:22:25 by stakimot          #+#    #+#              #
-#    Updated: 2023/03/07 18:55:49 by stakimot         ###   ########.fr        #
+#    Created: 2022/11/06 19:16:53 by stakimot          #+#    #+#              #
+#    Updated: 2022/11/06 19:17:27 by stakimot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	so_long
-CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror
-RM		=	rm -rf
-AR		=	ar rcs
+NAME		=	libftprintf.a
+CC			=	gcc
+CFLAGS		=	-Wall -Wextra -Werror
+SRCS		=	ft_printf.c num.c write.c base.c
+SRCS_OBJS	=	$(SRCS:.c=.o)
 
-SRC		=	main.c map.c check.c mlx_setup.c image.c move.c utils.c
-OBJ		=	$(SRC:.c=.o)
-MLXFLAG	=	-lmlx -framework OpenGL -framework AppKit
+$(NAME):	$(SRCS_OBJS)
+	make -C Libft
+	cp Libft/libft.a ./
+	mv libft.a $(NAME)
+	ar -rcs $(NAME) $(SRCS_OBJS)
 
 all:	$(NAME)
 
-$(NAME):	$(OBJ)
-	make -C get_next_line
-	make -C ft_printf
-	$(CC) $(CLFAGS) -o $@ $^ get_next_line/gnl.a ft_printf/libftprintf.a $(MLXFLAG)
-
 clean:
-	make clean -C get_next_line
-	make clean -C ft_printf
-	$(RM) $(OBJ)
+		rm -rf $(SRCS_OBJS)
+		make clean -C Libft
 
 fclean:	clean
-	make fclean -C get_next_line
-	make fclean -C ft_printf
-	$(RM) $(NAME)
+		rm -rf $(NAME)
+		rm -rf Libft/libft.a
 
-re:	fclean all
+re:		fclean $(NAME)
 
-.PHONY: all clean fclean re
+.PFONY:	all clean fclean re

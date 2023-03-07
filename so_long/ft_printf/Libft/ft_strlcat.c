@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:19:41 by stakimot         ###   ########.fr       */
+/*   Created: 2022/10/23 13:38:15 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/30 11:49:02 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	t_map_data	*map_data;
-	t_data		*data;
+	size_t	len;
+	size_t	cnt;
 
-	if (argc != 2)
-		return (0);
-	map_data = read_map(argv[1]);
-	data = NULL;
-	mlx_setup(data, map_data);
-	return (0);
+	if (!dst && src && !size)
+		return (ft_strlen(src));
+	len = ft_strlen(dst);
+	if (len >= size)
+		return (ft_strlen(src) + size);
+	cnt = 0;
+	while (len + cnt + 1 < size && src[cnt])
+	{
+		dst[len + cnt] = src[cnt];
+		cnt++;
+	}
+	dst[len + cnt] = '\0';
+	return (len + ft_strlen(src));
 }
-
-// 	__attribute__((destructor)) static void destructor()
-// {
-//     system("leaks -q so_long");
-// }

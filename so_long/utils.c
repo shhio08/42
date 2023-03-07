@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:09:17 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/05 17:01:04 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:22:05 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,141 +19,89 @@ void	error(char *str)
 	exit(0);
 }
 
-void	ft_putstr_fd(char *s, int fd)
+int	check_name(char *file_name)
 {
-	size_t	cnt;
+	int		cnt;
+	int		i;
+	char	*ber;
 
 	cnt = 0;
-	if (!s)
-		return ;
-	while (s[cnt])
-	{
-		write(fd, &s[cnt], 1);
+	ber = ft_strdup(".ber");
+	while (file_name[cnt])
 		cnt++;
+	cnt--;
+	i = 0;
+	while (i < 4)
+	{
+		if (file_name[cnt - i] != ber[3 - i])
+		{
+			free(ber);
+			return (-1);
+		}
+		i++;
 	}
+	free(ber);
+	return (0);
 }
 
-// size_t	ft_strlen(const char *str)
-// {
-// 	size_t	cnt;
+void	map_free(char **map)
+{
+	size_t	i;
 
-// 	cnt = 0;
-// 	while (str[cnt])
-// 		cnt++;
-// 	return (cnt);
-// }
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		map[i] = NULL;
+		i++;
+	}
+	free(map);
+	map = NULL;
+}
 
-// char	*ft_strdup(const char *s1)
-// {
-// 	char	*dest;
-// 	char	*src;
-// 	size_t	cnt;
+void	exit_map(char *str, t_data *data)
+{
+	ft_printf("%s\n", str);
+	map_free(data->map_data->map);
+	free(data->map_data);
+	mlx_destroy_window(data->mlx, data->win);
+	if (data->space_image)
+		mlx_destroy_image(data->mlx, data->space_image);
+	if (data->wall_image)
+		mlx_destroy_image(data->mlx, data->wall_image);
+	if (data->player_image)
+		mlx_destroy_image(data->mlx, data->player_image);
+	if (data->collect_image)
+		mlx_destroy_image(data->mlx, data->collect_image);
+	if (data->exit_image)
+		mlx_destroy_image(data->mlx, data->exit_image);
+	free(data);
+	exit(0);
+}
 
-// 	src = (char *)s1;
-// 	cnt = ft_strlen(s1);
-// 	dest = (char *)malloc(sizeof(char) * (cnt + 1));
-// 	if (!dest)
-// 		return (NULL);
-// 	cnt = 0;
-// 	while (src[cnt])
-// 	{
-// 		dest[cnt] = src[cnt];
-// 		cnt++;
-// 	}
-// 	dest[cnt] = '\0';
-// 	return (dest);
-// }
+void	itosu(char	*str, unsigned int	n)
+{
+	char			*num;
+	unsigned int	nn;
+	int				i;
 
-// char	*ft_strjoin(char const *s1, char const *s2)
-// {
-// 	char	*dest;
-// 	size_t	cnt;
-
-// 	cnt = 0;
-// 	if (!s1 && !s2)
-// 		return (NULL);
-// 	if (!s1)
-// 		return (ft_strdup(s2));
-// 	if (!s2)
-// 		return (ft_strdup(s1));
-// 	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-// 	if (!dest)
-// 		return (NULL);
-// 	while (*s1)
-// 		dest[cnt++] = *s1++;
-// 	while (*s2)
-// 		dest[cnt++] = *s2++;
-// 	dest[cnt] = '\0';
-// 	return (dest);
-// }
-
-// static char	**ft_free(char **dest)
-// {
-// 	size_t	cnt;
-
-// 	cnt = 0;
-// 	while (dest[cnt])
-// 		free(dest[cnt++]);
-// 	free(dest);
-// 	return (NULL);
-// }
-
-// static size_t	get_word(char const *s, char c)
-// {
-// 	size_t	cnt;
-// 	size_t	word;
-
-// 	cnt = 0;
-// 	word = 0;
-// 	while (s[cnt])
-// 	{
-// 		if (s[cnt] != c && (s[cnt + 1] == c || s[cnt + 1] == '\0'))
-// 			word++;
-// 		cnt++;
-// 	}
-// 	return (word);
-// }
-
-// static char	*set_word(int start, int end, char const *s)
-// {
-// 	size_t	cnt;
-// 	char	*dest;
-
-// 	cnt = 0;
-// 	dest = (char *)malloc(sizeof(char) * (end - start + 1));
-// 	if (!dest)
-// 		return (NULL);
-// 	while (start < end)
-// 		dest[cnt++] = s[start++];
-// 	dest[cnt] = '\0';
-// 	return (dest);
-// }
-
-// char	**ft_split(char const *s, char c)
-// {
-// 	char	**dest;
-// 	size_t	s_cnt;
-// 	size_t	start;
-// 	size_t	d_cnt;
-
-// 	s_cnt = 0;
-// 	d_cnt = 0;
-// 	if (!s)
-// 		return (NULL);
-// 	dest = (char **)malloc(sizeof(char *) * (get_word(s, c) + 1));
-// 	if (!dest)
-// 		return (NULL);
-// 	while (d_cnt < get_word(s, c))
-// 	{
-// 		while (s[s_cnt] == c)
-// 			s_cnt++;
-// 		start = s_cnt;
-// 		while (s[s_cnt] != '\0' && s[s_cnt] != c)
-// 			s_cnt++;
-// 		dest[d_cnt] = set_word(start, s_cnt, s);
-// 		if (!dest[d_cnt++])
-// 			return (ft_free(dest));
-// 	}
-// 	dest[d_cnt] = NULL;
-// 	return (dest);
-// }
+	if (n == 0)
+	{
+		*str = '0';
+		return ;
+	}
+	num = "0123456789";
+	nn = 1;
+	while (n / nn >= 10)
+		nn *= 10;
+	while (nn > 0)
+	{
+		i = n / nn;
+		*str = *(num + i);
+		str++;
+		n -= i * nn;
+		nn /= 10;
+	}
+	*str = '\0';
+	return ;
+}

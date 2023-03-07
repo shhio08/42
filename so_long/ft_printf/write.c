@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   write.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:19:41 by stakimot         ###   ########.fr       */
+/*   Created: 2022/11/06 17:48:53 by stakimot          #+#    #+#             */
+/*   Updated: 2022/11/06 19:20:36 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	put_str(char *str)
 {
-	t_map_data	*map_data;
-	t_data		*data;
+	int	cnt;
+	int	byte;
 
-	if (argc != 2)
-		return (0);
-	map_data = read_map(argv[1]);
-	data = NULL;
-	mlx_setup(data, map_data);
-	return (0);
+	cnt = 0;
+	byte = 0;
+	if (!str)
+	{
+		byte = write (1, "(null)", 6);
+		return (byte);
+	}
+	while (str[cnt])
+	{
+		byte = write (1, &str[cnt], 1);
+		if (byte == -1)
+			return (-1);
+		cnt += byte;
+	}
+	return (cnt);
 }
 
-// 	__attribute__((destructor)) static void destructor()
-// {
-//     system("leaks -q so_long");
-// }
+int	put_char(char c)
+{
+	int	byte;
+
+	byte = write(1, &c, 1);
+	return (byte);
+}

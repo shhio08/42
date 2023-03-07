@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:19:41 by stakimot         ###   ########.fr       */
+/*   Created: 2022/10/10 18:12:55 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/29 14:32:09 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_map_data	*map_data;
-	t_data		*data;
+	void	*tmp;
 
-	if (argc != 2)
-		return (0);
-	map_data = read_map(argv[1]);
-	data = NULL;
-	mlx_setup(data, map_data);
-	return (0);
+	if (count == 0 || size == 0)
+	{
+		tmp = (void *)malloc(sizeof(void) * 1);
+		if (!tmp)
+			return (NULL);
+		ft_bzero(tmp, 1);
+		return (tmp);
+	}
+	if (count > SIZE_MAX / size)
+		return (NULL);
+	tmp = (void *)malloc(sizeof(void) * count * size);
+	if (!tmp)
+		return (NULL);
+	ft_bzero(tmp, count * size);
+	return (tmp);
 }
-
-// 	__attribute__((destructor)) static void destructor()
-// {
-//     system("leaks -q so_long");
-// }

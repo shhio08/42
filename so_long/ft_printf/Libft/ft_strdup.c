@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 12:24:02 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:19:41 by stakimot         ###   ########.fr       */
+/*   Created: 2022/10/10 18:45:01 by stakimot          #+#    #+#             */
+/*   Updated: 2022/10/30 11:35:28 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(const char *s1)
 {
-	t_map_data	*map_data;
-	t_data		*data;
+	char	*dest;
+	char	*src;
+	size_t	cnt;
 
-	if (argc != 2)
-		return (0);
-	map_data = read_map(argv[1]);
-	data = NULL;
-	mlx_setup(data, map_data);
-	return (0);
+	src = (char *)s1;
+	cnt = ft_strlen(s1);
+	dest = (char *)malloc(sizeof(char) * (cnt + 1));
+	if (!dest)
+		return (NULL);
+	cnt = 0;
+	while (src[cnt])
+	{
+		dest[cnt] = src[cnt];
+		cnt++;
+	}
+	dest[cnt] = '\0';
+	return (dest);
 }
-
-// 	__attribute__((destructor)) static void destructor()
-// {
-//     system("leaks -q so_long");
-// }

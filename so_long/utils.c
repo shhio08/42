@@ -6,16 +6,26 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:09:17 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:22:05 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/08 12:15:05 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error(char *str)
+void	error(char *str, t_map_data *map_data)
 {
 	ft_putstr_fd(str, 1);
 	write(1, "\n", 1);
+	map_free(map_data->map);
+	free(map_data);
+	exit(0);
+}
+
+void	error1(char *str, t_map_data *map_data)
+{
+	ft_putstr_fd(str, 1);
+	write(1, "\n", 1);
+	free(map_data);
 	exit(0);
 }
 
@@ -49,6 +59,8 @@ void	map_free(char **map)
 	size_t	i;
 
 	i = 0;
+	if (!map || !*map)
+		return ;
 	while (map[i])
 	{
 		free(map[i]);
@@ -77,31 +89,4 @@ void	exit_map(char *str, t_data *data)
 		mlx_destroy_image(data->mlx, data->exit_image);
 	free(data);
 	exit(0);
-}
-
-void	itosu(char	*str, unsigned int	n)
-{
-	char			*num;
-	unsigned int	nn;
-	int				i;
-
-	if (n == 0)
-	{
-		*str = '0';
-		return ;
-	}
-	num = "0123456789";
-	nn = 1;
-	while (n / nn >= 10)
-		nn *= 10;
-	while (nn > 0)
-	{
-		i = n / nn;
-		*str = *(num + i);
-		str++;
-		n -= i * nn;
-		nn /= 10;
-	}
-	*str = '\0';
-	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:48:38 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:58:26 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:50:00 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static int	put_image(t_data *data, int row, int col)
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->wall_image, col * data->pix_size, row * data->pix_size + 32);
 	else if (data->map_data->map[row][col] == 'P')
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->player_image, col * data->pix_size, row * data->pix_size + 32);
+		mlx_put_image_to_window(data->mlx, data->win, data->player_image,
+			col * data->pix_size, row * data->pix_size + 32);
 	else if (data->map_data->map[row][col] == 'C')
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->collect_image, col * data->pix_size, row * data->pix_size + 32);
+		mlx_put_image_to_window(data->mlx, data->win, data->collect_image,
+			col * data->pix_size, row * data->pix_size + 32);
 	else if (data->map_data->map[row][col] == 'E')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->exit_image, col * data->pix_size, row * data->pix_size + 32);

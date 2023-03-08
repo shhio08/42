@@ -6,13 +6,13 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:40:38 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 19:22:22 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/08 12:45:26 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	top_bottom_check(char *str, int col)
+static void	top_bottom_check(char *str, int col, t_map_data **map_data)
 {
 	int	cnt;
 
@@ -20,7 +20,7 @@ static void	top_bottom_check(char *str, int col)
 	while (cnt < col)
 	{
 		if (str[cnt] != '1')
-			error("Error element1");
+			error("map error", *map_data);
 		cnt++;
 	}
 }
@@ -36,7 +36,7 @@ static int	middle_check(t_map_data **map, int row, int *player, int *exit)
 	{
 		if ((col == 0 && (*map)->map[row][col] != '1') || \
 			(col == (*map)->col - 1 && (*map)->map[row][col] != '1'))
-			error("Error element4");
+			error("map error", *map);
 		if ((*map)->map[row][col] == 'P')
 		{
 			*player += 1;
@@ -48,7 +48,7 @@ static int	middle_check(t_map_data **map, int row, int *player, int *exit)
 		else if ((*map)->map[row][col] == 'C')
 			collectible += 1;
 		else if ((*map)->map[row][col] != '1' && (*map)->map[row][col] != '0')
-			error("Error element2");
+			error("map error", *map);
 		col++;
 	}
 	return (collectible);
@@ -68,13 +68,13 @@ void	element_check(t_map_data **map_data)
 	while (row < (*map_data)->row)
 	{
 		if (row == 0 || row == (*map_data)->row - 1)
-			top_bottom_check((*map_data)->map[row], (*map_data)->col);
+			top_bottom_check((*map_data)->map[row], (*map_data)->col, map_data);
 		else
 			collectible += middle_check(map_data, row, &player, &exit);
 		row++;
 	}
 	if (player != 1 || exit != 1 || collectible < 1)
-		error("Error element3");
+		error("map error", *map_data);
 	(*map_data)->collectible = collectible;
 }
 
@@ -108,7 +108,7 @@ void	playable_check(t_map_data **map_data)
 	cnt = 0;
 	copy = (char **)malloc(sizeof(char *) * (*map_data)->row + 1);
 	if (!copy)
-		error("Error malloc");
+		error("malloc error", *map_data);
 	while (cnt < (*map_data)->row)
 	{
 		copy[cnt] = ft_strdup((*map_data)->map[cnt]);
@@ -119,6 +119,6 @@ void	playable_check(t_map_data **map_data)
 	(*map_data)->check_collect = (*map_data)->collectible;
 	mark_map(map_data, copy, (*map_data)->y, (*map_data)->x);
 	if ((*map_data)->check_collect != 0 || (*map_data)->check_exit != 0)
-		error("Error not playable");
+		error("map error", *map_data);
 	map_free(copy);
 }

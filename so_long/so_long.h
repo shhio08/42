@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:18:56 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/07 21:23:45 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/08 12:15:01 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,11 @@ void		element_check(t_map_data **map_data);
 void		playable_check(t_map_data **map_data);
 void		mlx_setup(t_data *data, t_map_data *map_data);
 int			show_image(t_data *data);
-void		error(char *str);
+void		error(char *str, t_map_data *map_data);
+void		error1(char *str, t_map_data *map_data);
 int			check_name(char *file_name);
 void		map_free(char **map);
 void		exit_map(char *str, t_data *data);
 int			move_player(int keycode, t_data *data);
-
-void	itosu(char	*str, unsigned int	n);
 
 #endif

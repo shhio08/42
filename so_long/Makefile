@@ -6,7 +6,7 @@
 #    By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:22:25 by stakimot          #+#    #+#              #
-#    Updated: 2023/03/08 11:00:39 by stakimot         ###   ########.fr        #
+#    Updated: 2023/03/08 13:05:13 by stakimot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ OBJ		=	$(SRC:.c=.o)
 MLXFLAG	=	-lmlx -framework OpenGL -framework AppKit
 
 all:	$(NAME)
+
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 $(NAME):	$(OBJ)
 	make -C get_next_line

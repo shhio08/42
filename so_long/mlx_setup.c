@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 15:23:19 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/08 11:45:17 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:07:46 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	mlx_setup(t_data *data, t_map_data *map_data)
 {
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
-		error("malloc error");
+		error("malloc error", map_data);
 	data->map_data = map_data;
 	data->step = 0;
 	data->mlx = mlx_init();

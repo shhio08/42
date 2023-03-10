@@ -6,38 +6,47 @@
 #    By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:22:25 by stakimot          #+#    #+#              #
-#    Updated: 2023/03/08 13:05:13 by stakimot         ###   ########.fr        #
+#    Updated: 2023/03/09 11:26:32 by stakimot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	so_long
-CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror
-RM		=	rm -rf
-AR		=	ar rcs
+NAME		=	so_long
+CC			=	cc
+CFLAGS		=	-Wall -Wextra -Werror
+RM			=	rm -rf
+AR			=	ar rcs
 
-SRC		=	main.c map.c check.c mlx_setup.c image.c move.c utils.c
-OBJ		=	$(SRC:.c=.o)
-MLXFLAG	=	-lmlx -framework OpenGL -framework AppKit
+INC			=	-I inc/ -I $(GNL_DIR) -I $(PRT_DIR)
+MLXFLAG		=	-lmlx -framework OpenGL -framework AppKit
+
+SRC_DIR		=	src/
+OBJ_DIR		=	objs/
+GNL_DIR		=	get_next_line/
+PRT_DIR		=	ft_printf/
+
+SRC_NAME	=	main.c map.c check.c mlx_setup.c image.c move.c utils.c
+OBJ_NAME	=	$(SRC_NAME:.c=.o)
+OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_NAME))
 
 all:	$(NAME)
 
-%.o: %.c
-	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
-
 $(NAME):	$(OBJ)
-	make -C get_next_line
-	make -C ft_printf
-	$(CC) $(CLFAGS) -o $@ $^ get_next_line/gnl.a ft_printf/libftprintf.a $(MLXFLAG)
+	make -C $(GNL_DIR)
+	make -C $(PRT_DIR)
+	$(CC) $(CLFAGS) -o $@ $^ $(GNL_DIR)gnl.a $(PRT_DIR)libftprintf.a $(MLXFLAG)
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CLFAGS) $(INC) -Imlx -c $^ -o $@
 
 clean:
-	make clean -C get_next_line
-	make clean -C ft_printf
+	make clean -C $(GNL_DIR)
+	make clean -C $(PRT_DIR)
 	$(RM) $(OBJ)
 
 fclean:	clean
-	make fclean -C get_next_line
-	make fclean -C ft_printf
+	make fclean -C $(GNL_DIR)
+	make fclean -C $(PRT_DIR)
 	$(RM) $(NAME)
 
 re:	fclean all

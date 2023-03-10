@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:18:56 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/08 13:05:54 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:25:38 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "mlx.h"
-# include "get_next_line/get_next_line.h"
-# include "ft_printf/ft_printf.h"
+# include "get_next_line.h"
+# include "ft_printf.h"
 
 typedef struct s_map_data
 {

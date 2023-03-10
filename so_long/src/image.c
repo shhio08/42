@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:48:38 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/08 11:50:00 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:05:19 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	put_image(t_data *data, int row, int col)
 {
 	char	*num;
 
-	num = ft_strdup(ft_itoa(data->step));
+	num = ft_itoa(data->step);
 	if (data->map_data->map[row][col] == '0')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->space_image, col * data->pix_size, row * data->pix_size + 32);

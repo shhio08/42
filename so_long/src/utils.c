@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:09:17 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/08 12:15:05 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/09 12:25:11 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,13 @@ void	error1(char *str, t_map_data *map_data)
 
 int	check_name(char *file_name)
 {
-	int		cnt;
-	int		i;
-	char	*ber;
+	size_t	cnt;
 
 	cnt = 0;
-	ber = ft_strdup(".ber");
 	while (file_name[cnt])
 		cnt++;
-	cnt--;
-	i = 0;
-	while (i < 4)
-	{
-		if (file_name[cnt - i] != ber[3 - i])
-		{
-			free(ber);
-			return (-1);
-		}
-		i++;
-	}
-	free(ber);
+	if (ft_strncmp(&file_name[cnt - 4], ".ber", 4))
+		return (-1);
 	return (0);
 }
 
@@ -59,7 +46,7 @@ void	map_free(char **map)
 	size_t	i;
 
 	i = 0;
-	if (!map || !*map)
+	if (!map)
 		return ;
 	while (map[i])
 	{

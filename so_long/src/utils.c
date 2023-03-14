@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:09:17 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/09 12:25:11 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:41:53 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_name(char *file_name)
 	while (file_name[cnt])
 		cnt++;
 	if (ft_strncmp(&file_name[cnt - 4], ".ber", 4))
-		return (-1);
+		return (1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:48:38 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/09 11:05:19 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:10:01 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	put_image(t_data *data, int row, int col)
 	else if (data->map_data->map[row][col] == 'E')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->exit_image, col * data->pix_size, row * data->pix_size + 32);
-	mlx_string_put(data->mlx, data->win, 10, 5, 0xFFECE1, num);
 	free(num);
 	return (0);
 }
@@ -45,8 +44,9 @@ void	put_step(t_data *data, int col)
 
 int	show_image(t_data *data)
 {
-	int	row;
-	int	col;
+	int		row;
+	int		col;
+	char	*num;
 
 	row = 0;
 	col = 0;
@@ -59,5 +59,8 @@ int	show_image(t_data *data)
 			put_image(data, row, col++);
 		row++;
 	}
+	num = ft_itoa(data->step);
+	mlx_string_put(data->mlx, data->win, 10, 5, 0xFFECE1, num);
+	free(num);
 	return (0);
 }

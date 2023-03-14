@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:38:34 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/09 12:35:06 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:40:30 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,10 @@ t_map_data	*read_map(char *file_name)
 
 	map_data = (t_map_data *)malloc(sizeof(t_map_data));
 	if (!map_data)
-		exit(1);
+	{
+		ft_putendl_fd("malloc error", 1);
+		exit(0);
+	}
 	map_data->map = NULL;
 	if (check_name(file_name))
 		error("file name error", map_data);

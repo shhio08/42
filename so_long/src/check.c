@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:40:38 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/08 12:45:26 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:58:57 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	playable_check(t_map_data **map_data)
 	(*map_data)->check_exit = 1;
 	(*map_data)->check_collect = (*map_data)->collectible;
 	mark_map(map_data, copy, (*map_data)->y, (*map_data)->x);
+	map_free(copy);
 	if ((*map_data)->check_collect != 0 || (*map_data)->check_exit != 0)
 		error("map error", *map_data);
-	map_free(copy);
 }

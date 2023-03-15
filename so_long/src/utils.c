@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:09:17 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/14 17:41:53 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:19:38 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	error1(char *str, t_map_data *map_data)
 
 int	check_name(char *file_name)
 {
-	size_t	cnt;
+	char	*tmp;
 
-	cnt = 0;
-	while (file_name[cnt])
-		cnt++;
-	if (ft_strncmp(&file_name[cnt - 4], ".ber", 4))
+	tmp = ft_strchr(file_name, '.');
+	if (!tmp)
+		return (1);
+	if (ft_strncmp(tmp, ".ber", 5))
 		return (1);
 	return (0);
 }

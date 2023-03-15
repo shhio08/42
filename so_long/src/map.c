@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:38:34 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/14 17:40:30 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:18:54 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void	read_line(t_map_data **map_data, char *file_name)
 	while (cnt < (*map_data)->row)
 	{
 		((*map_data)->map[cnt]) = get_next_line(fd);
+		if (!(*map_data)->map[cnt])
+			error("read error", *map_data);
 		(*map_data)->map[cnt + 1] = NULL;
 		form_check(map_data, cnt++);
 	}

@@ -6,7 +6,7 @@
 #    By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:22:25 by stakimot          #+#    #+#              #
-#    Updated: 2023/03/09 11:26:32 by stakimot         ###   ########.fr        #
+#    Updated: 2023/03/21 19:28:26 by stakimot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 clean:
 	make clean -C $(GNL_DIR)
 	make clean -C $(PRT_DIR)
-	$(RM) $(OBJ)
+	$(RM) $(OBJ_DIR)
 
 fclean:	clean
 	make fclean -C $(GNL_DIR)

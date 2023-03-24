@@ -6,7 +6,7 @@
 /*   By: stakimot <stakimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:38:34 by stakimot          #+#    #+#             */
-/*   Updated: 2023/03/15 20:18:54 by stakimot         ###   ########.fr       */
+/*   Updated: 2023/03/24 22:53:50 by stakimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	form_check(t_map_data **map_data, int cnt)
 	int	col;
 
 	col = 0;
-	while ((*map_data)->map[cnt][col] != '\n')
+	while ((*map_data)->map[cnt][col] != '\n' && (*map_data)->map[cnt][col])
 	{
 		col++;
 	}
